@@ -14,7 +14,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 function AdminGuard({ children }) {
   const token = localStorage.getItem('smts_admin_token');
   if (!token) {
-    return <Navigate to="/admin/login" replace />;
+    return <Navigate to="/portail-smts/login" replace />;
   }
   return children;
 }
@@ -34,9 +34,9 @@ export default function App() {
 
   return (
     <Routes>
-      <Route path="/admin/login" element={<AdminLogin />} />
+      <Route path="/portail-smts/login" element={<AdminLogin />} />
       <Route
-        path="/admin"
+        path="/portail-smts"
         element={
           <AdminGuard>
             <AdminDashboard />

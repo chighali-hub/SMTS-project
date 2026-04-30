@@ -28,19 +28,31 @@ export default function LeGroupe() {
         description="SMTS Group : entreprise mauritanienne de référence en investissement en Mauritanie, logistique Nouakchott et facilitation d'affaires."
         keywords="Investissement en Mauritanie, Logistique Nouakchott, Facilitation d'affaires Mauritanie, Transport international Mauritanie"
       />
-      <div className="mx-auto max-w-7xl px-4 py-12 md:px-6 lg:px-8 lg:py-16">
+
+      {/* Background Gradients */}
+      <div className="fixed inset-0 pointer-events-none -z-10 bg-smts-dark">
+        <div className="absolute inset-0 bg-premium-gradient opacity-40 " />
+        <div className="absolute inset-0 bg-grid-slate opacity-20" />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-4 py-24 md:px-6 lg:px-8 lg:py-32 relative z-10">
         <motion.section
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="max-w-3xl"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-4xl"
         >
-          <p className="text-sm font-semibold uppercase tracking-wider text-smts-electric">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-smts-electric/10 border border-smts-electric/20 text-smts-electric text-xs font-bold uppercase tracking-widest mb-6">
+            <span className="w-2 h-2 rounded-full bg-smts-electric animate-pulse"></span>
             À propos de SMTS Group
-          </p>
-          <h1 className="mt-3 text-4xl font-extrabold text-white md:text-5xl">
-            Une entreprise mauritanienne de référence
+          </div>
+          <h1 className="text-4xl font-extrabold text-white md:text-5xl lg:text-6xl drop-shadow-md">
+            Une entreprise mauritanienne de{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-smts-electric to-smts-accent drop-shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+              référence
+            </span>
           </h1>
-          <p className="mt-6 text-lg leading-relaxed text-white/75">
+          <p className="mt-8 text-lg md:text-xl font-medium leading-relaxed text-smts-muted">
             SMTS Group est une entreprise mauritanienne de référence opérant dans
             plusieurs secteurs stratégiques. Notre mission est de faciliter les
             opérations commerciales et d&apos;investissement en offrant des
@@ -48,7 +60,7 @@ export default function LeGroupe() {
           </p>
         </motion.section>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
+        <div className="mt-20 grid gap-8 md:grid-cols-3">
           {[
             {
               k: 'Vision',
@@ -67,12 +79,13 @@ export default function LeGroupe() {
               key={item.k}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="glass rounded-2xl p-8"
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              className="glass-card rounded-[2rem] p-8 lg:p-10 transition-all duration-300 hover:-translate-y-2 group"
             >
-              <h2 className="text-xl font-bold text-smts-electric">{item.k}</h2>
-              <p className="mt-4 text-sm leading-relaxed text-white/70">
+              <h2 className="text-2xl font-bold text-smts-electric group-hover:text-white transition-colors">{item.k}</h2>
+              <div className="mt-4 w-12 h-1 bg-gradient-to-r from-smts-electric to-smts-accent rounded-full transition-all group-hover:w-full" />
+              <p className="mt-6 text-base font-medium leading-relaxed text-white/75 group-hover:text-white transition-colors">
                 {item.v}
               </p>
             </motion.div>
@@ -80,62 +93,77 @@ export default function LeGroupe() {
         </div>
 
         <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mt-24 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-smts-medium/40 to-smts-navy"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8 }}
+          className="mt-32 overflow-hidden rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-[#151e2e]/80 to-[#030712]/90 shadow-2xl relative"
         >
           <div className="grid gap-0 md:grid-cols-2">
-            <div className="relative min-h-[320px]">
+            <div className="relative min-h-[400px] md:min-h-[auto] group">
               <img
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80"
+                src="https://middle-east-online.com/sites/default/files/styles/home_special_coverage_1920xauto/public/2019-08/weld-gazwani.jpg?itok=-vgDCaDd"
                 alt="Présidence SMTS Group"
-                className="absolute inset-0 h-full w-full object-cover opacity-90"
+                className="absolute inset-0 h-full w-full object-cover opacity-80 filter grayscale-[30%] transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-smts-navy/90 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#030712]/90 via-[#030712]/50 to-transparent" />
             </div>
-            <div className="flex flex-col justify-center p-10 md:p-14">
-              <span className="text-6xl font-serif leading-none text-smts-electric/40">
+            <div className="flex flex-col justify-center p-10 md:p-16 relative z-10">
+              <span className="absolute top-8 left-8 text-8xl font-serif leading-none text-smts-electric/20 select-none">
                 “
               </span>
-              <blockquote className="text-xl font-medium leading-relaxed text-white md:text-2xl">
+              <blockquote className="relative z-10 text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed text-white tracking-wide">
                 Chez SMTS Group, nous croyons fermement au potentiel économique
                 de la Mauritanie. Notre ambition est de créer des ponts solides
                 entre les investisseurs internationaux et les opportunités
                 locales.
               </blockquote>
-              <p className="mt-8 text-sm font-semibold uppercase tracking-wider text-white/50">
-                Mot du Président
-              </p>
+              <div className="mt-10 flex items-center gap-4">
+                <div className="w-12 h-px bg-smts-electric/50" />
+                <p className="text-sm font-bold uppercase tracking-widest text-smts-electric">
+                  Mot du Président
+                </p>
+              </div>
             </div>
           </div>
         </motion.section>
 
-        <section className="mt-24">
-          <motion.h2
+        <section className="mt-32 pb-20">
+          <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl font-extrabold text-white"
+            className="text-center max-w-2xl mx-auto"
           >
-            Nos filiales
-          </motion.h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <p className="text-sm font-bold uppercase tracking-widest text-smts-electric mb-4">
+              Nos piliers économiques
+            </p>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+              Nos filiales
+            </h2>
+          </motion.div>
+
+          <div className="mt-16 grid gap-8 md:grid-cols-3">
             {filiales.map((f, i) => (
               <motion.div
                 key={f.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
+                transition={{ delay: i * 0.1, type: "spring" }}
                 whileHover={{ y: -6 }}
-                className="glass rounded-2xl p-8 transition hover:border-smts-electric/40"
+                className="glass-card group rounded-3xl p-8 transition-all hover:shadow-[0_20px_40px_rgba(59,130,246,0.15)] overflow-hidden relative"
               >
-                <f.icon className="text-3xl text-smts-electric" />
-                <h3 className="mt-4 text-lg font-bold text-white">{f.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/65">
-                  {f.text}
-                </p>
+                <div className="absolute inset-0 bg-gradient-to-br from-smts-electric/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="relative z-10">
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-smts-electric/20 to-smts-accent/20 text-smts-electric shadow-lg transition-transform duration-500 group-hover:-translate-y-1">
+                    <f.icon size={26} />
+                  </div>
+                  <h3 className="text-xl font-bold text-white group-hover:text-smts-electric transition-colors">{f.title}</h3>
+                  <p className="mt-4 text-sm font-medium leading-relaxed text-smts-muted">
+                    {f.text}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>

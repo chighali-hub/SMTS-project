@@ -33,17 +33,22 @@ export default function AnimatedCounter({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5 }}
-      className="glass group rounded-2xl p-6 transition hover:border-smts-electric/40 hover:shadow-[0_0_30px_rgba(37,99,235,0.15)]"
+      transition={{ duration: 0.6, type: 'spring', damping: 25 }}
+      className="glass-card group rounded-3xl p-6 md:p-8 relative overflow-hidden"
     >
+      <div className="absolute inset-0 bg-gradient-to-br from-smts-electric/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
       {Icon && (
-        <div className="mb-4 inline-flex rounded-xl bg-smts-electric/15 p-3 text-smts-electric transition group-hover:bg-smts-electric/25">
-          <Icon size={26} />
+        <div className="mb-6 inline-flex rounded-2xl bg-gradient-to-br from-smts-electric/20 to-smts-accent/20 p-4 text-smts-electric transition-transform duration-500 group-hover:scale-110 shadow-lg shadow-smts-electric/10">
+          <Icon size={28} />
         </div>
       )}
-      <p className="text-3xl font-extrabold text-white md:text-4xl">
+      <p className={`font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 drop-shadow-sm ${
+        staticText && staticText.length > 8 
+          ? 'text-2xl md:text-3xl tracking-tight break-words' 
+          : 'text-3xl md:text-4xl lg:text-5xl'
+      }`}>
         {staticText != null ? (
           staticText
         ) : (
@@ -54,7 +59,7 @@ export default function AnimatedCounter({
           </>
         )}
       </p>
-      <p className="mt-2 text-sm leading-snug text-white/65">{label}</p>
+      <p className="mt-3 text-sm font-semibold tracking-wider text-smts-muted uppercase">{label}</p>
     </motion.div>
   );
 }

@@ -36,6 +36,7 @@ app.use('/api/contacts', require('./routes/contacts'));
 app.use('/api/actualites', require('./routes/actualites'));
 app.use('/api/medias', require('./routes/medias'));
 app.use('/api/admin', require('./routes/adminAuth'));
+app.use('/api/settings', require('./routes/settings'));
 
 app.use(errorHandler);
 
