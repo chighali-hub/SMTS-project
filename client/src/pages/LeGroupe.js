@@ -1,6 +1,10 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaTruck, FaLeaf, FaChartLine } from 'react-icons/fa';
 import Seo from '../components/Seo';
+import api from '../api/client';
+
+const DEFAULT_IMG = "https://middle-east-online.com/sites/default/files/styles/home_special_coverage_1920xauto/public/2019-08/weld-gazwani.jpg?itok=-vgDCaDd";
 
 const filiales = [
   {
@@ -21,6 +25,14 @@ const filiales = [
 ];
 
 export default function LeGroupe() {
+  const [img, setImg] = useState(DEFAULT_IMG);
+
+  useEffect(() => {
+    api.get('/settings').then((res) => {
+      if (res.data?.groupeImg) setImg(res.data.groupeImg);
+    }).catch(() => {});
+  }, []);
+
   return (
     <>
       <Seo
@@ -102,7 +114,7 @@ export default function LeGroupe() {
           <div className="grid gap-0 md:grid-cols-2">
             <div className="relative min-h-[400px] md:min-h-[auto] group">
               <img
-                src="https://middle-east-online.com/sites/default/files/styles/home_special_coverage_1920xauto/public/2019-08/weld-gazwani.jpg?itok=-vgDCaDd"
+                src={img}
                 alt="Présidence SMTS Group"
                 className="absolute inset-0 h-full w-full object-cover opacity-80 filter grayscale-[30%] transition-transform duration-700 group-hover:scale-105"
               />

@@ -51,4 +51,15 @@ router.patch('/:id/lu', auth, async (req, res, next) => {
   }
 });
 
+router.delete('/:id', auth, async (req, res, next) => {
+  try {
+    const doc = await Contact.findByIdAndDelete(req.params.id);
+    if (!doc) return res.status(404).json({ message: 'Contact introuvable' });
+    res.json({ message: 'Message supprimé.' });
+  } catch (e) {
+    next(e);
+  }
+});
+
 module.exports = router;
+

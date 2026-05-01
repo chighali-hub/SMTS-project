@@ -12,6 +12,41 @@ const tabs = [
   { id: 'settings', label: 'Configuration' },
 ];
 
+function ImageField({ label, value, onChange }) {
+  return (
+    <div className="space-y-2">
+      <label className="block text-xs font-bold uppercase tracking-widest text-white/40 ml-1">
+        {label}
+      </label>
+      <div className="flex flex-col gap-3">
+        <input
+          placeholder="URL de l'image (ex: https://images.unsplash.com/...)"
+          value={value || ''}
+          onChange={(e) => onChange(e.target.value)}
+          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm focus:border-smts-electric/50 transition-colors"
+        />
+        <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/5 bg-black/40 group">
+          {value ? (
+            <img 
+              src={value} 
+              alt="Preview" 
+              className="h-full w-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500" 
+              onError={(e) => { e.target.src = 'https://via.placeholder.com/800x450?text=Lien+invalide'; }}
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center text-xs text-white/20 font-medium italic">
+              Aucune image sélectionnée
+            </div>
+          )}
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+            <p className="text-[10px] font-bold uppercase tracking-tighter text-white/50">Aperçu en direct</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function AdminDashboard() {
   const navigate = useNavigate();
   const [tab, setTab] = useState('dash');
@@ -19,7 +54,7 @@ export default function AdminDashboard() {
   const [contacts, setContacts] = useState([]);
   const [error, setError] = useState('');
   const [saving, setSaving] = useState(false);
-  const [settingsForm, setSettingsForm] = useState({ phone: '', email: '', location: '' });
+  const [settingsForm, setSettingsForm] = useState({ phone: '', email: '', location: '', heroImg: '', aboutImg: '', investirImg: '', groupeImg: '' });
   const [pwdForm, setPwdForm] = useState({ currentPassword: '', newPassword: '' });
   const [settingsMsg, setSettingsMsg] = useState({ type: '', text: '' });
 
@@ -38,7 +73,7 @@ export default function AdminDashboard() {
         api.get('/settings')
       ]);
       setContacts(cRes.data || []);
-      setSettingsForm(sRes.data || { phone: '', email: '', location: '' });
+      setSettingsForm(sRes.data || { phone: '', email: '', location: '', heroImg: '', aboutImg: '', investirImg: '', groupeImg: '' });
     } catch (e) {
       if (e.response?.status === 401) {
         localStorage.removeItem('smts_admin_token');
@@ -59,7 +94,7 @@ export default function AdminDashboard() {
     const ok = window.confirm('Confirmer la déconnexion ?');
     if (!ok) return;
     localStorage.removeItem('smts_admin_token');
-    navigate('/portail-smts/login', { replace: true });
+    navigate('/accueil', { replace: true });
   };
 
   const markRead = async (id) => {
@@ -68,6 +103,16 @@ export default function AdminDashboard() {
       await loadAll();
     } catch (err) {
       setError(err.response?.data?.message || 'Action impossible.');
+    }
+  };
+
+  const deleteContact = async (id) => {
+    if (!window.confirm('Supprimer ce message définitivement ?')) return;
+    try {
+      await api.delete(`/contacts/${id}`, { headers: authHeaders() });
+      setContacts((prev) => prev.filter((c) => c._id !== id));
+    } catch (err) {
+      setError(err.response?.data?.message || 'Suppression impossible.');
     }
   };
 
@@ -207,15 +252,24 @@ export default function AdminDashboard() {
                           {c.message}
                         </p>
                       </div>
-                      {!c.lu && (
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        {!c.lu && (
+                          <button
+                            type="button"
+                            onClick={() => markRead(c._id)}
+                            className="rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium hover:bg-white/20"
+                          >
+                            Marquer comme lu
+                          </button>
+                        )}
                         <button
                           type="button"
-                          onClick={() => markRead(c._id)}
-                          className="rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium hover:bg-white/20"
+                          onClick={() => deleteContact(c._id)}
+                          className="rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1.5 text-xs font-medium text-red-400 hover:bg-red-500/20 hover:border-red-500/50 transition-all"
                         >
-                          Marquer comme lu
+                          Supprimer
                         </button>
-                      )}
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -223,68 +277,152 @@ export default function AdminDashboard() {
             )}
 
             {tab === 'settings' && (
-              <div className="grid gap-10 lg:grid-cols-2">
-                <div className="space-y-6">
-                  {settingsMsg.text && (
-                    <p className={`rounded-xl p-4 text-sm font-medium ${settingsMsg.type === 'success' ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}`}>
-                      {settingsMsg.text}
-                    </p>
-                  )}
-                  <form onSubmit={saveSettings} className="glass-card rounded-[2rem] border border-white/10 p-8 shadow-[0_20px_40px_rgba(0,0,0,0.5)]">
-                    <h2 className="text-lg font-bold">Informations globales</h2>
-                    <p className="mb-4 mt-1 text-xs text-white/50">Ces informations s'affichent sur le site public.</p>
-                    <div className="space-y-4">
-                      <input
-                        placeholder="Téléphone"
-                        value={settingsForm.phone || ''}
-                        onChange={(e) => setSettingsForm({ ...settingsForm, phone: e.target.value })}
-                        className="w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm"
-                      />
-                      <input
-                        placeholder="Email"
-                        type="email"
-                        value={settingsForm.email || ''}
-                        onChange={(e) => setSettingsForm({ ...settingsForm, email: e.target.value })}
-                        className="w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm"
-                      />
-                      <input
-                        placeholder="Emplacement"
-                        value={settingsForm.location || ''}
-                        onChange={(e) => setSettingsForm({ ...settingsForm, location: e.target.value })}
-                        className="w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm"
-                      />
-                      <button type="submit" disabled={saving} className="btn-premium px-5 py-2 text-sm disabled:opacity-50">
-                        Enregistrer
-                      </button>
-                    </div>
-                  </form>
-                </div>
+              <div className="space-y-10 pb-20">
+                {settingsMsg.text && (
+                  <motion.p 
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className={`rounded-xl p-4 text-sm font-medium ${settingsMsg.type === 'success' ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}`}
+                  >
+                    {settingsMsg.text}
+                  </motion.p>
+                )}
 
-                <form onSubmit={updatePassword} className="glass-card rounded-[2rem] border border-white/10 p-8 shadow-[0_20px_40px_rgba(0,0,0,0.5)] h-fit">
-                  <h2 className="text-lg font-bold">Sécurité du compte</h2>
-                  <p className="mb-4 mt-1 text-xs text-white/50">Modifiez votre mot de passe administrateur.</p>
-                  <div className="space-y-4">
-                    <input
-                      placeholder="Mot de passe actuel"
-                      type="password"
-                      value={pwdForm.currentPassword}
-                      onChange={(e) => setPwdForm({ ...pwdForm, currentPassword: e.target.value })}
-                      required
-                      className="w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm"
-                    />
-                    <input
-                      placeholder="Nouveau mot de passe"
-                      type="password"
-                      value={pwdForm.newPassword}
-                      onChange={(e) => setPwdForm({ ...pwdForm, newPassword: e.target.value })}
-                      required
-                      className="w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm"
-                    />
-                    <button type="submit" disabled={saving} className="btn-premium px-5 py-2 text-sm disabled:opacity-50">
-                      Mettre à jour le mot de passe
+                <form onSubmit={saveSettings} className="grid gap-8 lg:grid-cols-2">
+                  {/* Left Column: Global & Home Page */}
+                  <div className="space-y-8">
+                    {/* Global Info Section */}
+                    <div className="glass-card rounded-[2rem] border border-white/10 p-8 shadow-xl">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="h-8 w-1 bg-smts-electric rounded-full" />
+                        <h2 className="text-xl font-bold">Informations Générales</h2>
+                      </div>
+                      <div className="space-y-4">
+                        <div>
+                          <label className="block text-xs text-white/50 mb-1 ml-1">Téléphone</label>
+                          <input
+                            placeholder="Téléphone"
+                            value={settingsForm.phone || ''}
+                            onChange={(e) => setSettingsForm({ ...settingsForm, phone: e.target.value })}
+                            className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-smts-electric/50 transition-colors bg-white/5"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs text-white/50 mb-1 ml-1">Email</label>
+                          <input
+                            placeholder="Email"
+                            type="email"
+                            value={settingsForm.email || ''}
+                            onChange={(e) => setSettingsForm({ ...settingsForm, email: e.target.value })}
+                            className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-smts-electric/50 transition-colors bg-white/5"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs text-white/50 mb-1 ml-1">Localisation</label>
+                          <input
+                            placeholder="Ex: Nouakchott, Mauritanie"
+                            value={settingsForm.location || ''}
+                            onChange={(e) => setSettingsForm({ ...settingsForm, location: e.target.value })}
+                            className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-smts-electric/50 transition-colors bg-white/5"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Home Page Section */}
+                    <div className="glass-card rounded-[2rem] border border-white/10 p-8 shadow-xl">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="h-8 w-1 bg-smts-electric rounded-full" />
+                        <h2 className="text-xl font-bold">Page d'Accueil</h2>
+                      </div>
+                      <div className="space-y-6">
+                        <ImageField 
+                          label="Image Hero (Haut de page)" 
+                          value={settingsForm.heroImg} 
+                          onChange={(val) => setSettingsForm({ ...settingsForm, heroImg: val })}
+                        />
+                        <ImageField 
+                          label="Image À Propos" 
+                          value={settingsForm.aboutImg} 
+                          onChange={(val) => setSettingsForm({ ...settingsForm, aboutImg: val })}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Other Pages */}
+                  <div className="space-y-8">
+                    {/* Investir Section */}
+                    <div className="glass-card rounded-[2rem] border border-white/10 p-8 shadow-xl">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="h-8 w-1 bg-smts-electric rounded-full" />
+                        <h2 className="text-xl font-bold">Page Investir</h2>
+                      </div>
+                      <div className="space-y-6">
+                        <ImageField 
+                          label="Image Principale" 
+                          value={settingsForm.investirImg} 
+                          onChange={(val) => setSettingsForm({ ...settingsForm, investirImg: val })}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Le Groupe Section */}
+                    <div className="glass-card rounded-[2rem] border border-white/10 p-8 shadow-xl">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="h-8 w-1 bg-smts-electric rounded-full" />
+                        <h2 className="text-xl font-bold">Page Le Groupe</h2>
+                      </div>
+                      <div className="space-y-6">
+                        <ImageField 
+                          label="Image du Président" 
+                          value={settingsForm.groupeImg} 
+                          onChange={(val) => setSettingsForm({ ...settingsForm, groupeImg: val })}
+                        />
+                      </div>
+                    </div>
+
+                    <button 
+                      type="submit" 
+                      disabled={saving} 
+                      className="btn-premium w-full py-4 text-base font-bold shadow-[0_10px_20px_rgba(59,130,246,0.3)] hover:shadow-[0_15px_30px_rgba(59,130,246,0.5)] transition-all disabled:opacity-50"
+                    >
+                      {saving ? 'Enregistrement...' : 'Sauvegarder toute la configuration'}
                     </button>
                   </div>
                 </form>
+
+                <div className="border-t border-white/10 pt-10">
+                  <div className="max-w-2xl">
+                    <form onSubmit={updatePassword} className="glass-card rounded-[2rem] border border-white/10 p-8 shadow-xl">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="h-8 w-1 bg-red-500 rounded-full" />
+                        <h2 className="text-xl font-bold">Sécurité du Compte</h2>
+                      </div>
+                      <div className="space-y-4">
+                        <input
+                          placeholder="Mot de passe actuel"
+                          type="password"
+                          value={pwdForm.currentPassword}
+                          onChange={(e) => setPwdForm({ ...pwdForm, currentPassword: e.target.value })}
+                          required
+                          className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-red-500/50 transition-colors bg-white/5"
+                        />
+                        <input
+                          placeholder="Nouveau mot de passe"
+                          type="password"
+                          value={pwdForm.newPassword}
+                          onChange={(e) => setPwdForm({ ...pwdForm, newPassword: e.target.value })}
+                          required
+                          className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-red-500/50 transition-colors bg-white/5"
+                        />
+                        <button type="submit" disabled={saving} className="w-full py-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-500 font-bold hover:bg-red-500 hover:text-white transition-all disabled:opacity-50">
+                          Mettre à jour le mot de passe
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
               </div>
             )}
           </>

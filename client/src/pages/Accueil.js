@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
@@ -17,12 +17,10 @@ import {
 import { HiArrowRight, HiMail } from 'react-icons/hi';
 import Seo from '../components/Seo';
 import AnimatedCounter from '../components/AnimatedCounter';
+import api from '../api/client';
 
-const heroImg =
-  'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=2000&q=80';
-
-const aboutImg =
-  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80';
+const DEFAULT_HERO = 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=2000&q=80';
+const DEFAULT_ABOUT = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80';
 
 const poles = [
   {
@@ -78,6 +76,16 @@ export default function Accueil() {
   });
   const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+
+  const [heroImg, setHeroImg] = useState(DEFAULT_HERO);
+  const [aboutImg, setAboutImg] = useState(DEFAULT_ABOUT);
+
+  useEffect(() => {
+    api.get('/settings').then((res) => {
+      if (res.data?.heroImg) setHeroImg(res.data.heroImg);
+      if (res.data?.aboutImg) setAboutImg(res.data.aboutImg);
+    }).catch(() => {});
+  }, []);
 
   return (
     <>

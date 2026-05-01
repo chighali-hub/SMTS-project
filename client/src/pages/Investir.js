@@ -1,8 +1,12 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaGasPump, FaGem, FaFish, FaBroadcastTower } from 'react-icons/fa';
 import { HiArrowRight } from 'react-icons/hi';
 import Seo from '../components/Seo';
+import api from '../api/client';
+
+const DEFAULT_IMG = "https://i1-c.pinimg.com/1200x/71/74/de/7174de9a84626b2b809dff6ae4837624.jpg";
 
 const secteurs = [
   {
@@ -43,6 +47,14 @@ const steps = [
 ];
 
 export default function Investir() {
+  const [img, setImg] = useState(DEFAULT_IMG);
+
+  useEffect(() => {
+    api.get('/settings').then((res) => {
+      if (res.data?.investirImg) setImg(res.data.investirImg);
+    }).catch(() => {});
+  }, []);
+
   return (
     <>
       <Seo
@@ -86,7 +98,7 @@ export default function Investir() {
           >
             <div className="absolute inset-0 bg-smts-electric/10  z-10 group-hover:opacity-0 transition-opacity duration-700" />
             <img
-              src="https://i1-c.pinimg.com/1200x/71/74/de/7174de9a84626b2b809dff6ae4837624.jpg"
+              src={img}
               alt="Vue aérienne — littoral et territoire mauritanien"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105 filter grayscale-[10%]"
             />

@@ -18,7 +18,7 @@ router.get('/', async (req, res, next) => {
 
 router.put('/', auth, async (req, res, next) => {
   try {
-    const { location, email, phone } = req.body;
+    const { location, email, phone, heroImg, aboutImg, investirImg, groupeImg } = req.body;
     let setting = await Setting.findOne();
     if (!setting) {
       setting = new Setting();
@@ -26,6 +26,10 @@ router.put('/', auth, async (req, res, next) => {
     if (location !== undefined) setting.location = location;
     if (email !== undefined) setting.email = email;
     if (phone !== undefined) setting.phone = phone;
+    if (heroImg !== undefined) setting.heroImg = heroImg;
+    if (aboutImg !== undefined) setting.aboutImg = aboutImg;
+    if (investirImg !== undefined) setting.investirImg = investirImg;
+    if (groupeImg !== undefined) setting.groupeImg = groupeImg;
 
     await setting.save();
     res.json(setting);
