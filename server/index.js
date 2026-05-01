@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/errorHandler');
 
@@ -26,15 +25,11 @@ app.use(
 );
 app.use(express.json());
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
 app.get('/api/health', (req, res) => {
   res.json({ ok: true, service: 'SMTS Group API' });
 });
 
 app.use('/api/contacts', require('./routes/contacts'));
-app.use('/api/actualites', require('./routes/actualites'));
-app.use('/api/medias', require('./routes/medias'));
 app.use('/api/admin', require('./routes/adminAuth'));
 app.use('/api/settings', require('./routes/settings'));
 
