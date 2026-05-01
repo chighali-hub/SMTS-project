@@ -28,7 +28,7 @@ const blocks = [
     list: ['Fret international', 'Gestion des stocks', 'Distribution locale'],
   },
   {
-    title: 'Courtage en douane',
+    title: 'Déclarant en douane',
     icon: FaFileAlt,
     text: 'Gestion complète des formalités douanières pour un dédouanement rapide et sécurisé.',
     list: [],
@@ -46,7 +46,7 @@ export default function Expertises() {
     <>
       <Seo
         title="Nos expertises"
-        description="Représentation commerciale, médiation, logistique Nouakchott, courtage en douane et denrées alimentaires — SMTS Group, transport international Mauritanie."
+        description="Représentation commerciale, médiation, logistique Nouakchott, déclarant en douane et denrées alimentaires — SMTS Group, transport international Mauritanie."
         keywords="Investissement en Mauritanie, Logistique Nouakchott, Facilitation d'affaires Mauritanie, Transport international Mauritanie"
       />
       
