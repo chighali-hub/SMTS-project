@@ -102,8 +102,10 @@ export default function Accueil() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#030712] via-[#08101a]/80 to-transparent" />
         </motion.div>
         
-        <motion.div style={{ opacity }} className="relative mx-auto flex w-full max-w-7xl flex-col justify-center px-4 pt-20 md:px-6 lg:px-8 z-10 hidden md:block" />
-        <div className="relative mx-auto flex w-full max-w-7xl flex-col justify-center px-4 pt-24 pb-32 md:px-6 lg:px-8 z-10">
+        <motion.div
+          style={{ opacity }}
+          className="relative mx-auto flex w-full max-w-7xl flex-col justify-center px-4 py-32 md:py-40 md:px-6 lg:px-8 z-10"
+        >
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -139,8 +141,9 @@ export default function Accueil() {
               </Link>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
+
 
       <section className="relative z-20 -mt-24 px-4 md:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2 lg:grid-cols-4">
