@@ -64,19 +64,16 @@ L’API : [http://localhost:5000](http://localhost:5000)
 | Collection   | Usage                          |
 |-------------|---------------------------------|
 | `contacts`  | Messages contact / partenariat |
-| `actualites`| Articles (publié / brouillon)  |
-| `medias`    | Galerie photos / vidéos        |
 | `admin`     | Comptes administrateurs        |
+| `settings`  | Coordonnées du site public     |
 
 ## Routes API principales
 
 - `POST /api/contacts` — formulaire public  
 - `GET /api/contacts`, `PATCH /api/contacts/:id/lu` — admin (JWT)  
-- `GET /api/actualites` — public : articles **publiés** ; avec en-tête `Authorization: Bearer <token>` admin : **tous** les articles  
-- `GET /api/actualites/:id` — détail (brouillon visible uniquement avec JWT admin)  
-- `POST|PUT|DELETE /api/actualites`… — admin  
-- `GET /api/medias` — public ; `POST|DELETE` — admin  
-- `POST /api/admin/login` — connexion, réponse `{ token, admin }`
+- `POST /api/admin/login` — connexion, réponse `{ token, admin }`  
+- `GET /api/settings` — public : coordonnées (email, téléphone, localisation)  
+- `PUT /api/settings` — admin : mise à jour des coordonnées
 
 ## Déploiement
 

@@ -9,7 +9,6 @@ const quick = [
   { to: '/le-groupe', label: 'Le Groupe' },
   { to: '/investir', label: 'Investir en Mauritanie' },
   { to: '/expertises', label: 'Nos Expertises' },
-  { to: '/actualites', label: 'Actualités' },
   { to: '/contact', label: 'Contact' },
 ];
 
