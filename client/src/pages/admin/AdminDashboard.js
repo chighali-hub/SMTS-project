@@ -259,7 +259,7 @@ export default function AdminDashboard() {
                       <input
                         value={msgQuery}
                         onChange={(e) => setMsgQuery(e.target.value)}
-                        placeholder="Rechercher par nom (ex: sidi)"
+                        placeholder="Recherche par nom"
                         className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-smts-electric/50 transition-colors bg-white/5"
                       />
                       <p className="mt-2 text-xs text-white/40">
