@@ -52,6 +52,8 @@ export default function AdminDashboard() {
   const [tab, setTab] = useState('dash');
   const [loading, setLoading] = useState(true);
   const [contacts, setContacts] = useState([]);
+  const [msgQuery, setMsgQuery] = useState('');
+  const [msgType, setMsgType] = useState('all'); // all | partenariat | contact
   const [error, setError] = useState('');
   const [saving, setSaving] = useState(false);
   const [settingsForm, setSettingsForm] = useState({ phone: '', email: '', location: '', heroImg: '', aboutImg: '', investirImg: '', groupeImg: '' });
@@ -115,6 +117,13 @@ export default function AdminDashboard() {
       setError(err.response?.data?.message || 'Suppression impossible.');
     }
   };
+
+  const filteredContacts = contacts.filter((c) => {
+    const q = msgQuery.trim().toLowerCase();
+    const matchesQuery = !q || (c.nom || '').toLowerCase().includes(q);
+    const matchesType = msgType === 'all' || c.type === msgType;
+    return matchesQuery && matchesType;
+  });
 
   const saveSettings = async (e) => {
     e.preventDefault();
@@ -223,11 +232,52 @@ export default function AdminDashboard() {
             )}
 
             {tab === 'msg' && (
-              <div className="space-y-3">
-                {contacts.length === 0 && (
+              <div className="space-y-4">
+                <div className="glass-card rounded-2xl border border-white/10 p-4 md:p-5">
+                  <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                    <div className="flex flex-wrap gap-2">
+                      {[
+                        { id: 'all', label: 'Tous' },
+                        { id: 'partenariat', label: 'Messages partenariat' },
+                        { id: 'contact', label: 'Messages normaux' },
+                      ].map((t) => (
+                        <button
+                          key={t.id}
+                          type="button"
+                          onClick={() => setMsgType(t.id)}
+                          className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                            msgType === t.id
+                              ? 'bg-smts-electric text-white'
+                              : 'border border-white/15 text-white/70 hover:border-white/30'
+                          }`}
+                        >
+                          {t.label}
+                        </button>
+                      ))}
+                    </div>
+                    <div className="w-full md:w-[360px]">
+                      <input
+                        value={msgQuery}
+                        onChange={(e) => setMsgQuery(e.target.value)}
+                        placeholder="Rechercher par nom (ex: sidi)"
+                        className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-smts-electric/50 transition-colors bg-white/5"
+                      />
+                      <p className="mt-2 text-xs text-white/40">
+                        Résultats : <span className="text-white/70 font-semibold">{filteredContacts.length}</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {filteredContacts.length === 0 && contacts.length === 0 && (
                   <p className="text-white/50">Aucun message.</p>
                 )}
-                {contacts.map((c) => (
+                {filteredContacts.length === 0 && contacts.length > 0 && (
+                  <p className="text-white/50">
+                    Aucun message ne correspond à votre recherche.
+                  </p>
+                )}
+                {filteredContacts.map((c) => (
                   <div
                     key={c._id}
                     className={`glass-card rounded-[1.5rem] border p-6 transition-all shadow-[0_10px_20px_rgba(0,0,0,0.3)] ${
@@ -262,13 +312,15 @@ export default function AdminDashboard() {
                             Marquer comme lu
                           </button>
                         )}
-                        <button
-                          type="button"
-                          onClick={() => deleteContact(c._id)}
-                          className="rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1.5 text-xs font-medium text-red-400 hover:bg-red-500/20 hover:border-red-500/50 transition-all"
-                        >
-                          Supprimer
-                        </button>
+                        {c.lu && (
+                          <button
+                            type="button"
+                            onClick={() => deleteContact(c._id)}
+                            className="rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1.5 text-xs font-medium text-red-400 hover:bg-red-500/20 hover:border-red-500/50 transition-all"
+                          >
+                            Supprimer
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
