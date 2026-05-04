@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   FaTrophy,
   FaHandshake,
-  FaBriefcase,
   FaFish,
   FaTruck,
   FaStore,
