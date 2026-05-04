@@ -56,7 +56,7 @@ export default function AdminDashboard() {
   const [msgType, setMsgType] = useState('all'); // all | partenariat | contact
   const [error, setError] = useState('');
   const [saving, setSaving] = useState(false);
-  const [settingsForm, setSettingsForm] = useState({ phone: '', email: '', location: '', heroImg: '', aboutImg: '', investirImg: '', groupeImg: '' });
+  const [settingsForm, setSettingsForm] = useState({ phone: '', phoneDG: '', phoneDC: '', email: '', location: '', heroImg: '', aboutImg: '', investirImg: '', groupeImg: '', logoImg: '', logistiqueImg: '', importExportImg: '', solutionsImg: '', poissonsImg: '' });
   const [pwdForm, setPwdForm] = useState({ currentPassword: '', newPassword: '' });
   const [settingsMsg, setSettingsMsg] = useState({ type: '', text: '' });
 
@@ -75,7 +75,7 @@ export default function AdminDashboard() {
         api.get('/settings')
       ]);
       setContacts(cRes.data || []);
-      setSettingsForm(sRes.data || { phone: '', email: '', location: '', heroImg: '', aboutImg: '', investirImg: '', groupeImg: '' });
+      setSettingsForm(sRes.data || { phone: '', phoneDG: '', phoneDC: '', email: '', location: '', heroImg: '', aboutImg: '', investirImg: '', groupeImg: '', logoImg: '', logistiqueImg: '', importExportImg: '', solutionsImg: '', poissonsImg: '' });
     } catch (e) {
       if (e.response?.status === 401) {
         localStorage.removeItem('smts_admin_token');
@@ -351,11 +351,20 @@ export default function AdminDashboard() {
                       </div>
                       <div className="space-y-4">
                         <div>
-                          <label className="block text-xs text-white/50 mb-1 ml-1">Téléphone</label>
+                          <label className="block text-xs text-white/50 mb-1 ml-1">Téléphone Directeur Général</label>
                           <input
-                            placeholder="Téléphone"
-                            value={settingsForm.phone || ''}
-                            onChange={(e) => setSettingsForm({ ...settingsForm, phone: e.target.value })}
+                            placeholder="Tél Directeur Général"
+                            value={settingsForm.phoneDG || ''}
+                            onChange={(e) => setSettingsForm({ ...settingsForm, phoneDG: e.target.value })}
+                            className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-smts-electric/50 transition-colors bg-white/5"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs text-white/50 mb-1 ml-1">Téléphone Directeur Commercial</label>
+                          <input
+                            placeholder="Tél Directeur Commercial"
+                            value={settingsForm.phoneDC || ''}
+                            onChange={(e) => setSettingsForm({ ...settingsForm, phoneDC: e.target.value })}
                             className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-smts-electric/50 transition-colors bg-white/5"
                           />
                         </div>
@@ -378,6 +387,21 @@ export default function AdminDashboard() {
                             className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-smts-electric/50 transition-colors bg-white/5"
                           />
                         </div>
+                      </div>
+                    </div>
+
+                    {/* Logo Section */}
+                    <div className="glass-card rounded-[2rem] border border-white/10 p-8 shadow-xl">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="h-8 w-1 bg-smts-electric rounded-full" />
+                        <h2 className="text-xl font-bold">Marque / Identité visuelle</h2>
+                      </div>
+                      <div className="space-y-6">
+                        <ImageField 
+                          label="Logo de l'application" 
+                          value={settingsForm.logoImg} 
+                          onChange={(val) => setSettingsForm({ ...settingsForm, logoImg: val })}
+                        />
                       </div>
                     </div>
 
@@ -430,6 +454,26 @@ export default function AdminDashboard() {
                           label="Image du Président" 
                           value={settingsForm.groupeImg} 
                           onChange={(val) => setSettingsForm({ ...settingsForm, groupeImg: val })}
+                        />
+                        <ImageField 
+                          label="Image Filiale: Logistique & Transport" 
+                          value={settingsForm.logistiqueImg} 
+                          onChange={(val) => setSettingsForm({ ...settingsForm, logistiqueImg: val })}
+                        />
+                        <ImageField 
+                          label="Image Filiale: Import/Export" 
+                          value={settingsForm.importExportImg} 
+                          onChange={(val) => setSettingsForm({ ...settingsForm, importExportImg: val })}
+                        />
+                        <ImageField 
+                          label="Image Filiale: Solutions Business" 
+                          value={settingsForm.solutionsImg} 
+                          onChange={(val) => setSettingsForm({ ...settingsForm, solutionsImg: val })}
+                        />
+                        <ImageField 
+                          label="Image Filiale: Poissons frais" 
+                          value={settingsForm.poissonsImg} 
+                          onChange={(val) => setSettingsForm({ ...settingsForm, poissonsImg: val })}
                         />
                       </div>
                     </div>

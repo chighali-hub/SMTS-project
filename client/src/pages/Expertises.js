@@ -37,7 +37,7 @@ const blocks = [
     title: 'Commerce de denrées alimentaires',
     icon: FaCarrot,
     text: 'Importation et distribution de produits alimentaires essentiels.',
-    list: ['Légumes', 'Huiles', 'Sucre'],
+    list: ['Légumes', 'Huiles', 'Sucre', 'Lait (poudre et UHT)'],
   },
 ];
 

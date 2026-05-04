@@ -1,37 +1,64 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaTruck, FaLeaf, FaChartLine } from 'react-icons/fa';
+import { FaTruck, FaLeaf, FaChartLine, FaFish } from 'react-icons/fa';
 import Seo from '../components/Seo';
 import api from '../api/client';
 
-const DEFAULT_IMG = "https://middle-east-online.com/sites/default/files/styles/home_special_coverage_1920xauto/public/2019-08/weld-gazwani.jpg?itok=-vgDCaDd";
+const DEFAULT_IMG = "https://scontent.fsvq4-1.fna.fbcdn.net/v/t39.30808-6/686196217_2028219524747649_207232292685776683_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=102&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeF26ApKKtwStmtZIA6uqzm5toKXUx8cT-e2gpdTHxxP59ZWejSBr0THgmou4kvZhpt8ptKoTY6Qi4_Suyx9zHrJ&_nc_ohc=NmaCoZMZkmQQ7kNvwF9bKvd&_nc_oc=Adp31BFV8jeMPMm3XqQ8Ub6AWnOTjI0zrJXdXWyumBfZvbeO5A1L5pJyPGHYlHmE708&_nc_zt=23&_nc_ht=scontent.fsvq4-1.fna&_nc_gid=rkFh59czFyWpW-OvwfuNJQ&_nc_ss=7b2a8&oh=00_Af5RU0Gb58fZDBhqawWQf8mhRpXxfKE0abKVaOlH5fr19A&oe=69FE33D5";
 
 const filiales = [
   {
     title: 'Logistique & Transport',
     icon: FaTruck,
-    text: 'Solutions complètes de transport, stockage et distribution.',
+    text: 'Solutions complètes de transport, stockage, distribution et consignation des navires de commerce.',
+    image: '/Logistique&Transport.jpeg.jpeg',
   },
   {
-    title: 'Agro-industrie',
+    title: 'Import/Export',
     icon: FaLeaf,
-    text: 'Importation et distribution de produits alimentaires (huiles, sucre, légumes).',
+    text: 'Import/export et commercialisation de produits alimentaires (sucre, lait...).',
+    image: '/ImportExport.jpeg',
   },
   {
     title: 'Solutions Business',
     icon: FaChartLine,
     text: 'Accompagnement stratégique, représentation commerciale et conseil.',
+    image: '/smts-logo.png',
+  },
+  {
+    title: 'Poissons frais',
+    icon: FaFish,
+    text: 'Exportation de poissons frais.',
+    image: '/Poissons frais.jpeg',
   },
 ];
 
 export default function LeGroupe() {
   const [img, setImg] = useState(DEFAULT_IMG);
+  const [fImgs, setFimgs] = useState({ log: '/Logistique&Transport.jpeg.jpeg', imp: '/ImportExport.jpeg', sol: '/smts-logo.png', poi: '/Poissons frais.jpeg' });
 
   useEffect(() => {
     api.get('/settings').then((res) => {
       if (res.data?.groupeImg) setImg(res.data.groupeImg);
-    }).catch(() => {});
+      if (res.data) {
+        setFimgs({
+          log: res.data.logistiqueImg || '/Logistique&Transport.jpeg.jpeg',
+          imp: res.data.importExportImg || '/ImportExport.jpeg',
+          sol: res.data.solutionsImg || '/smts-logo.png',
+          poi: res.data.poissonsImg || '/Poissons frais.jpeg'
+        });
+      }
+    }).catch(() => { });
   }, []);
+
+  const dynamicFiliales = filiales.map(f => {
+    let finalImg = f.image;
+    if (f.title === 'Logistique & Transport') finalImg = fImgs.log;
+    if (f.title === 'Import/Export') finalImg = fImgs.imp;
+    if (f.title === 'Solutions Business') finalImg = fImgs.sol;
+    if (f.title === 'Poissons frais') finalImg = fImgs.poi;
+    return { ...f, image: finalImg };
+  });
 
   return (
     <>
@@ -155,8 +182,8 @@ export default function LeGroupe() {
             </h2>
           </motion.div>
 
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
-            {filiales.map((f, i) => (
+          <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {dynamicFiliales.map((f, i) => (
               <motion.div
                 key={f.title}
                 initial={{ opacity: 0, y: 30 }}
@@ -164,17 +191,24 @@ export default function LeGroupe() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, type: "spring" }}
                 whileHover={{ y: -6 }}
-                className="glass-card group rounded-3xl p-8 transition-all hover:shadow-[0_20px_40px_rgba(59,130,246,0.15)] overflow-hidden relative"
+                className="glass-card group rounded-3xl p-8 transition-all hover:shadow-[0_20px_40px_rgba(59,130,246,0.15)] overflow-hidden relative flex flex-col h-full"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-smts-electric/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <div className="relative z-10">
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-smts-electric/20 to-smts-accent/20 text-smts-electric shadow-lg transition-transform duration-500 group-hover:-translate-y-1">
-                    <f.icon size={26} />
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex-grow">
+                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-smts-electric/20 to-smts-accent/20 text-smts-electric shadow-lg transition-transform duration-500 group-hover:-translate-y-1">
+                      <f.icon size={26} />
+                    </div>
+                    <h3 className="text-xl font-bold text-white group-hover:text-smts-electric transition-colors">{f.title}</h3>
+                    <p className="mt-4 text-sm font-medium leading-relaxed text-smts-muted">
+                      {f.text}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-smts-electric transition-colors">{f.title}</h3>
-                  <p className="mt-4 text-sm font-medium leading-relaxed text-smts-muted">
-                    {f.text}
-                  </p>
+                  {f.image && (
+                    <div className="mt-8 -mx-8 -mb-8 overflow-hidden rounded-b-3xl bg-white flex items-center justify-center p-6">
+                      <img src={f.image} alt={f.title} className="w-full h-40 object-contain transition-transform duration-700 group-hover:scale-105" />
+                    </div>
+                  )}
                 </div>
               </motion.div>
             ))}

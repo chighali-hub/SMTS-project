@@ -5,6 +5,8 @@ const settingSchema = new mongoose.Schema(
     location: { type: String, default: 'Nouakchott, Mauritanie' },
     email: { type: String, default: 'contact@smtsgroup.com' },
     phone: { type: String, default: '+222 XX XX XX XX' },
+    phoneDG: { type: String, default: '' },
+    phoneDC: { type: String, default: '' },
     heroImg: {
       type: String,
       default: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=2000&q=80',
@@ -21,6 +23,11 @@ const settingSchema = new mongoose.Schema(
       type: String,
       default: 'https://middle-east-online.com/sites/default/files/styles/home_special_coverage_1920xauto/public/2019-08/weld-gazwani.jpg?itok=-vgDCaDd',
     },
+    logoImg: { type: String, default: '/smts-logo.png' },
+    logistiqueImg: { type: String, default: '/Logistique&Transport.jpeg.jpeg' },
+    importExportImg: { type: String, default: '/ImportExport.jpeg' },
+    solutionsImg: { type: String, default: '/smts-logo.png' },
+    poissonsImg: { type: String, default: '/Poissons frais.jpeg' },
   },
   { timestamps: true }
 );

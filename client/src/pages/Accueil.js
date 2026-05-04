@@ -5,7 +5,7 @@ import {
   FaTrophy,
   FaHandshake,
   FaBriefcase,
-  FaGlobeAfrica,
+  FaFish,
   FaTruck,
   FaStore,
   FaChartLine,
@@ -13,6 +13,7 @@ import {
   FaNetworkWired,
   FaRoute,
   FaUserCheck,
+  FaShoppingBasket,
 } from 'react-icons/fa';
 import { HiArrowRight, HiMail } from 'react-icons/hi';
 import Seo from '../components/Seo';
@@ -169,14 +170,16 @@ export default function Accueil() {
           />
           <AnimatedCounter
             prefix="+"
-            value={100}
-            label="projets accompagnés"
-            icon={FaBriefcase}
+            value={40}
+            suffix="k"
+            label="tonnes d'importations alimentaires"
+            icon={FaShoppingBasket}
           />
           <AnimatedCounter
-            staticText="Multisectoriel"
-            label="Présence en Mauritanie"
-            icon={FaGlobeAfrica}
+            prefix="+"
+            value={500}
+            label="tonnes/an d'exportations de poisson frais"
+            icon={FaFish}
           />
         </div>
       </section>

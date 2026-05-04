@@ -34,12 +34,22 @@ export default function Contact() {
   const [settings, setSettings] = useState({
     location: 'Nouakchott, Mauritanie',
     email: 'contact@smtsgroup.com',
-    phone: '+222 XX XX XX XX'
+    phoneDG: '22 94 88 88',
+    phoneDC: '44 05 66 66'
   });
 
   useEffect(() => {
     api.get('/settings').then(res => {
-      if (res.data) setSettings(s => ({ ...s, ...res.data }));
+      if (res.data) {
+        setSettings(s => ({
+          ...s,
+          ...res.data,
+          phoneDG: res.data.phoneDG || s.phoneDG,
+          phoneDC: res.data.phoneDC || s.phoneDC,
+          location: res.data.location || s.location,
+          email: res.data.email || s.email,
+        }));
+      }
     }).catch(e => console.error("Could not fetch settings", e));
   }, []);
 
@@ -128,8 +138,23 @@ export default function Contact() {
             },
             {
               icon: FaPhone,
-              title: 'Téléphone',
-              text: settings.phone,
+              title: 'Téléphones',
+              text: (
+                <div className="flex flex-col gap-3 mt-1">
+                  {settings.phoneDG && (
+                    <div className="flex flex-col">
+                      <span className="text-base font-bold text-white/90">{settings.phoneDG}</span>
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-smts-electric">Directeur général</span>
+                    </div>
+                  )}
+                  {settings.phoneDC && (
+                    <div className="flex flex-col">
+                      <span className="text-base font-bold text-white/90">{settings.phoneDC}</span>
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-smts-electric">Directeur commercial</span>
+                    </div>
+                  )}
+                </div>
+              ),
             },
           ].map((c, i) => (
             <motion.div
@@ -155,7 +180,7 @@ export default function Contact() {
                     {c.text}
                   </a>
                 ) : (
-                  <p className="mt-2 text-lg font-extrabold text-white">{c.text}</p>
+                  <div className="mt-2 text-lg font-extrabold text-white">{c.text}</div>
                 )}
               </div>
             </motion.div>

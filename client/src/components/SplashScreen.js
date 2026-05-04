@@ -51,7 +51,7 @@ export default function SplashScreen({ onDone }) {
         >
           <div className="mx-auto mb-6 flex h-28 w-28 items-center justify-center rounded-2xl border border-white/15 bg-gradient-to-br from-white/20 to-white/5 p-3 shadow-2xl backdrop-blur-sm">
             <img
-              src="/smts-logo.png"
+              src={sessionStorage.getItem('smts_logoImg') || "/smts-logo.png"}
               alt="SMTS Group"
               className="h-full w-full object-contain"
               draggable="false"
