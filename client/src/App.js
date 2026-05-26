@@ -7,15 +7,7 @@ import LeGroupe from './pages/LeGroupe';
 import Investir from './pages/Investir';
 import Expertises from './pages/Expertises';
 import Contact from './pages/Contact';
-import AdminLogin from './pages/admin/AdminLogin';
-import AdminDashboard from './pages/admin/AdminDashboard';
-function AdminGuard({ children }) {
-  const token = localStorage.getItem('smts_admin_token');
-  if (!token) {
-    return <Navigate to="/portail-smts/login" replace />;
-  }
-  return children;
-}
+
 
 export default function App() {
   const [splashDone, setSplashDone] = useState(() => {
@@ -32,15 +24,7 @@ export default function App() {
 
   return (
     <Routes>
-      <Route path="/portail-smts/login" element={<AdminLogin />} />
-      <Route
-        path="/portail-smts"
-        element={
-          <AdminGuard>
-            <AdminDashboard />
-          </AdminGuard>
-        }
-      />
+
       <Route path="/" element={<Layout />}>
         <Route index element={<Navigate to="/accueil" replace />} />
         <Route path="accueil" element={<Accueil />} />

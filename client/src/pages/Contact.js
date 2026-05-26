@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaMapMarkerAlt, FaEnvelope, FaPhone } from 'react-icons/fa';
-import api from '../api/client';
+import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaWhatsapp } from 'react-icons/fa';
 import Seo from '../components/Seo';
+import { useTranslation } from 'react-i18next';
 
 const initial = {
   nom: '',
@@ -12,18 +12,19 @@ const initial = {
   message: '',
 };
 
-function validate(values) {
+function validate(values, t) {
   const errs = {};
-  if (!values.nom.trim()) errs.nom = 'Le nom est obligatoire';
-  if (!values.email.trim()) errs.email = "L'email est obligatoire";
+  if (!values.nom.trim()) errs.nom = t('contact.errors.nom');
+  if (!values.email.trim()) errs.email = t('contact.errors.email');
   else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email))
-    errs.email = 'Email invalide';
-  if (!values.sujet.trim()) errs.sujet = 'Le sujet est obligatoire';
-  if (!values.message.trim()) errs.message = 'Le message est obligatoire';
+    errs.email = t('contact.errors.emailInv');
+  if (!values.sujet.trim()) errs.sujet = t('contact.errors.sujet');
+  if (!values.message.trim()) errs.message = t('contact.errors.msg');
   return errs;
 }
 
 export default function Contact() {
+  const { t } = useTranslation();
   const [form, setForm] = useState(initial);
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
@@ -31,27 +32,14 @@ export default function Contact() {
   const [success, setSuccess] = useState(false);
   const [partnerOpen, setPartnerOpen] = useState(false);
   const [partnerForm, setPartnerForm] = useState(initial);
-  const [settings, setSettings] = useState({
+  const settings = {
     location: 'Nouakchott, Mauritanie',
     email: 'contact@smtsgroup.com',
     phoneDG: '22 94 88 88',
     phoneDC: '44 05 66 66'
-  });
+  };
 
-  useEffect(() => {
-    api.get('/settings').then(res => {
-      if (res.data) {
-        setSettings(s => ({
-          ...s,
-          ...res.data,
-          phoneDG: res.data.phoneDG || s.phoneDG,
-          phoneDC: res.data.phoneDC || s.phoneDC,
-          location: res.data.location || s.location,
-          email: res.data.email || s.email,
-        }));
-      }
-    }).catch(e => console.error("Could not fetch settings", e));
-  }, []);
+
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -62,16 +50,17 @@ export default function Contact() {
   const submit = async (e, type = 'contact') => {
     e.preventDefault();
     const values = type === 'partenariat' ? partnerForm : form;
-    const v = validate(values);
+    const v = validate(values, t);
     setErrors(v);
     if (Object.keys(v).length) return;
     setSending(true);
     setApiError('');
     try {
-      await api.post('/contacts', {
-        ...values,
-        type: type === 'partenariat' ? 'partenariat' : 'contact',
-      });
+      await new Promise(resolve => setTimeout(resolve, 500));
+      const subject = type === 'partenariat' ? 'Nouvelle demande de partenariat' : 'Nouveau contact';
+      const body = `Nom complet : ${values.nom}\nEmail : ${values.email}\nTéléphone : ${values.telephone}\nSujet : ${values.sujet}\n\nMessage :\n${values.message}`;
+      window.location.href = `mailto:info@smts-group.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      
       setSuccess(true);
       if (type === 'partenariat') {
         setPartnerForm(initial);
@@ -81,10 +70,7 @@ export default function Contact() {
       }
       setTimeout(() => setSuccess(false), 5000);
     } catch (err) {
-      setApiError(
-        err.response?.data?.message ||
-          "L'envoi a échoué. Réessayez dans quelques instants."
-      );
+      setApiError(t('contact.apiError'));
     } finally {
       setSending(false);
     }
@@ -112,14 +98,13 @@ export default function Contact() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-smts-electric/10 border border-smts-electric/20 text-smts-electric text-xs font-bold uppercase tracking-widest mb-6">
             <span className="w-2 h-2 rounded-full bg-smts-electric animate-pulse"></span>
-            Contact
+            {t('contact.tag')}
           </div>
           <h1 className="mt-3 text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 md:text-6xl drop-shadow-md">
-            Échangeons sur <span className="text-transparent bg-clip-text bg-gradient-to-r from-smts-electric to-smts-accent">votre projet</span>
+            {t('contact.title1')}<span className="text-transparent bg-clip-text bg-gradient-to-r from-smts-electric to-smts-accent">{t('contact.title2')}</span>
           </h1>
           <p className="mt-6 text-lg font-medium text-smts-muted">
-            Notre équipe répond dans les meilleurs délais pour structurer vos
-            opérations en Mauritanie.
+            {t('contact.subtitle')}
           </p>
         </motion.div>
 
@@ -127,34 +112,42 @@ export default function Contact() {
           {[
             {
               icon: FaMapMarkerAlt,
-              title: 'Localisation',
+              title: t('contact.loc'),
               text: settings.location,
             },
             {
-              icon: FaEnvelope,
-              title: 'Email',
-              text: settings.email,
-              href: `mailto:${settings.email}`,
+              icon: FaPhone,
+              title: t('contact.dir'),
+              text: settings.phoneDG ? (
+                <a
+                  href={`https://wa.me/222${settings.phoneDG.replace(/\s+/g, '')}?text=${encodeURIComponent('Bonjour, je vous contacte depuis le site SMTS Group.')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col group/link mt-1"
+                >
+                  <span className="text-base font-bold text-white/90 transition-colors group-hover/link:text-[#25D366] flex items-center gap-2">
+                    <FaWhatsapp className="text-[#25D366] text-lg" /> {settings.phoneDG}
+                  </span>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-smts-electric mt-1">{t('contact.dirLabel')}</span>
+                </a>
+              ) : null,
             },
             {
               icon: FaPhone,
-              title: 'Téléphones',
-              text: (
-                <div className="flex flex-col gap-3 mt-1">
-                  {settings.phoneDG && (
-                    <div className="flex flex-col">
-                      <span className="text-base font-bold text-white/90">{settings.phoneDG}</span>
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-smts-electric">Directeur général</span>
-                    </div>
-                  )}
-                  {settings.phoneDC && (
-                    <div className="flex flex-col">
-                      <span className="text-base font-bold text-white/90">{settings.phoneDC}</span>
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-smts-electric">Directeur commercial</span>
-                    </div>
-                  )}
-                </div>
-              ),
+              title: t('contact.com'),
+              text: settings.phoneDC ? (
+                <a
+                  href={`https://wa.me/222${settings.phoneDC.replace(/\s+/g, '')}?text=${encodeURIComponent('Bonjour, je vous contacte depuis le site SMTS Group.')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col group/link mt-1"
+                >
+                  <span className="text-base font-bold text-white/90 transition-colors group-hover/link:text-[#25D366] flex items-center gap-2">
+                    <FaWhatsapp className="text-[#25D366] text-lg" /> {settings.phoneDC}
+                  </span>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-smts-electric mt-1">{t('contact.comLabel')}</span>
+                </a>
+              ) : null,
             },
           ].map((c, i) => (
             <motion.div
@@ -198,18 +191,18 @@ export default function Contact() {
           >
             <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-smts-electric/10 blur-3xl rounded-full pointer-events-none" />
             <h2 className="text-3xl font-extrabold text-white relative z-10">
-              Formulaire de contact
+              {t('contact.formTitle')}
             </h2>
             <div className="mt-8 grid gap-5 relative z-10">
               {[
-                ['nom', 'Nom complet', 'text'],
-                ['email', 'Email', 'email'],
-                ['telephone', 'Téléphone', 'tel'],
-                ['sujet', 'Sujet', 'text'],
-              ].map(([name, label, type]) => (
+                ['nom', 'nom', 'text'],
+                ['email', 'email', 'email'],
+                ['telephone', 'tel', 'tel'],
+                ['sujet', 'sujet', 'text'],
+              ].map(([name, labelKey, type]) => (
                 <div key={name}>
                   <label className="block text-sm font-bold tracking-wide text-white/70 uppercase">
-                    {label}
+                    {t(`contact.labels.${labelKey}`)}
                   </label>
                   <input
                     type={type}
@@ -225,7 +218,7 @@ export default function Contact() {
               ))}
               <div>
                 <label className="block text-sm font-bold tracking-wide text-white/70 uppercase">
-                  Message
+                  {t('contact.labels.msg')}
                 </label>
                 <textarea
                   name="message"
@@ -248,7 +241,7 @@ export default function Contact() {
               className="mt-8 btn-premium w-full px-8 py-4 text-sm z-10 group disabled:opacity-60"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-smts-electric to-smts-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <span className="relative z-10">{sending ? 'Envoi en cours...' : 'Envoyer le message'}</span>
+              <span className="relative z-10">{sending ? t('contact.sending') : t('contact.btnSend')}</span>
             </button>
           </motion.form>
 
@@ -261,12 +254,10 @@ export default function Contact() {
           >
             <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-smts-accent/10 blur-3xl rounded-full pointer-events-none" />
             <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 relative z-10">
-              Vous êtes investisseur ou entreprise ?
+              {t('contact.partTitle')}
             </h2>
             <p className="mt-6 text-[17px] font-medium leading-relaxed text-smts-muted relative z-10">
-              Contactez-nous pour explorer les opportunités en Mauritanie.
-              Décrivez votre secteur d&apos;intérêt et vos objectifs : nous
-              vous proposons un échange personnalisé.
+              {t('contact.partSub')}
             </p>
             <button
               type="button"
@@ -274,8 +265,8 @@ export default function Contact() {
               className="mt-8 rounded-full border-2 border-white/20 bg-white/5 px-8 py-4 text-sm font-bold text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:border-smts-electric hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:-translate-y-1 relative z-10"
             >
               {partnerOpen
-                ? 'Fermer le formulaire de partenariat'
-                : 'Demande de partenariat'}
+                ? t('contact.btnPartClose')
+                : t('contact.btnPartOpen')}
             </button>
             <AnimatePresence>
               {partnerOpen && (
@@ -289,7 +280,7 @@ export default function Contact() {
                   {['nom', 'email', 'telephone', 'sujet'].map((name) => (
                     <div key={name}>
                       <label className="block text-sm font-bold tracking-wide text-white/70 uppercase">
-                        {name === 'sujet' ? 'Sujet du projet' : name}
+                        {name === 'sujet' ? t('contact.partSujet') : t(`contact.labels.${name === 'telephone' ? 'tel' : name}`)}
                       </label>
                       <input
                         name={name}
@@ -310,7 +301,7 @@ export default function Contact() {
                   ))}
                   <div>
                     <label className="block text-sm font-bold tracking-wide text-white/70 uppercase">
-                      Détails de l'investissement
+                      {t('contact.partMsg')}
                     </label>
                     <textarea
                       name="message"
@@ -334,7 +325,7 @@ export default function Contact() {
                     disabled={sending}
                     className="mt-4 w-full rounded-full bg-white px-8 py-4 text-sm font-bold text-[#030712] shadow-xl hover:-translate-y-1 hover:shadow-2xl hover:bg-gray-200 transition-all disabled:opacity-60 disabled:hover:translate-y-0"
                   >
-                    {sending ? 'Transmission...' : 'Envoyer la demande'}
+                    {sending ? t('contact.sendingAlt') : t('contact.btnSendAlt')}
                   </button>
                 </motion.form>
               )}
@@ -351,8 +342,7 @@ export default function Contact() {
               transition={{ type: "spring", damping: 25 }}
               className="fixed bottom-10 left-1/2 z-[100] w-[90%] max-w-sm -translate-x-1/2 rounded-2xl border border-emerald-500/50 bg-[#030712]/95 px-6 py-5 text-center text-[15px] font-medium text-emerald-100 shadow-[0_0_30px_rgba(16,185,129,0.3)] backdrop-blur-sm"
             >
-              Message envoyé avec succès. Notre équipe vous recontacte très
-              prochainement.
+              {t('contact.success')}
             </motion.div>
           )}
         </AnimatePresence>

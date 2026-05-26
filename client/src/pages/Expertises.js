@@ -7,41 +7,44 @@ import {
   FaCarrot,
 } from 'react-icons/fa';
 import Seo from '../components/Seo';
-
-const blocks = [
-  {
-    title: 'Représentation commerciale',
-    icon: FaBriefcase,
-    text: 'Nous représentons vos intérêts en Mauritanie et développons votre réseau local.',
-    list: [],
-  },
-  {
-    title: "Médiation d'affaires",
-    icon: FaBalanceScale,
-    text: "Facilitation des négociations et sécurisation des partenariats.",
-    list: [],
-  },
-  {
-    title: 'Logistique & Transport',
-    icon: FaTruck,
-    text: 'Chaîne logistique bout en bout pour sécuriser vos flux.',
-    list: ['Fret international', 'Gestion des stocks', 'Distribution locale'],
-  },
-  {
-    title: 'Déclarant en douane',
-    icon: FaFileAlt,
-    text: 'Gestion complète des formalités douanières pour un dédouanement rapide et sécurisé.',
-    list: [],
-  },
-  {
-    title: 'Commerce de denrées alimentaires',
-    icon: FaCarrot,
-    text: 'Importation et distribution de produits alimentaires essentiels.',
-    list: ['Légumes', 'Huiles', 'Sucre', 'Lait (poudre et UHT)'],
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 export default function Expertises() {
+  const { t } = useTranslation();
+
+  const blocks = [
+    {
+      title: t('expertises.blocks.repTitle'),
+      icon: FaBriefcase,
+      text: t('expertises.blocks.repText'),
+      list: [],
+    },
+    {
+      title: t('expertises.blocks.medTitle'),
+      icon: FaBalanceScale,
+      text: t('expertises.blocks.medText'),
+      list: [],
+    },
+    {
+      title: t('expertises.blocks.logTitle'),
+      icon: FaTruck,
+      text: t('expertises.blocks.logText'),
+      list: t('expertises.blocks.logList', { returnObjects: true }),
+    },
+    {
+      title: t('expertises.blocks.douTitle'),
+      icon: FaFileAlt,
+      text: t('expertises.blocks.douText'),
+      list: [],
+    },
+    {
+      title: t('expertises.blocks.comTitle'),
+      icon: FaCarrot,
+      text: t('expertises.blocks.comText'),
+      list: t('expertises.blocks.comList', { returnObjects: true }),
+    },
+  ];
+
   return (
     <>
       <Seo
@@ -64,14 +67,13 @@ export default function Expertises() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-smts-electric/10 border border-smts-electric/20 text-smts-electric text-xs font-bold uppercase tracking-widest mb-6">
              <span className="w-2 h-2 rounded-full bg-smts-electric animate-pulse"></span>
-             Savoir-faire
+             {t('expertises.tag')}
           </div>
           <h1 className="mt-3 text-5xl font-extrabold md:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 drop-shadow-md">
-            Nos <span className="text-transparent bg-clip-text bg-gradient-to-r from-smts-electric to-smts-accent">expertises</span>
+            {t('expertises.title1')}<span className="text-transparent bg-clip-text bg-gradient-to-r from-smts-electric to-smts-accent">{t('expertises.title2')}</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-smts-muted font-medium">
-            Des équipes dédiées pour structurer vos opérations en Mauritanie,
-            de la représentation à la logistique opérationnelle.
+            {t('expertises.subtitle')}
           </p>
         </motion.div>
 

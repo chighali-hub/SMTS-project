@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   FaTrophy,
@@ -17,58 +18,12 @@ import {
 import { HiArrowRight, HiMail } from 'react-icons/hi';
 import Seo from '../components/Seo';
 import AnimatedCounter from '../components/AnimatedCounter';
-import api from '../api/client';
 
 const DEFAULT_HERO = 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=2000&q=80';
 const DEFAULT_ABOUT = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80';
 
-const poles = [
-  {
-    title: 'Logistique & Transport',
-    icon: FaTruck,
-    desc: 'Chaîne logistique intégrée pour vos flux régionaux et internationaux.',
-  },
-  {
-    title: 'Commerce Général',
-    icon: FaStore,
-    desc: 'Approvisionnement, import-export et distribution structurée.',
-  },
-  {
-    title: "Facilitation d'Investissement",
-    icon: FaHandshake,
-    desc: 'Accompagnement des investisseurs et structuration de projets.',
-  },
-  {
-    title: 'Solutions Business',
-    icon: FaChartLine,
-    desc: 'Représentation, médiation et conseil orienté résultats.',
-  },
-];
-
-const why = [
-  {
-    title: 'Expertise terrain en Mauritanie',
-    text: 'Une connaissance fine des acteurs, des procédures et des enjeux locaux.',
-    icon: FaShieldAlt,
-  },
-  {
-    title: 'Réseau institutionnel solide',
-    text: 'Relations de confiance avec les partenaires publics et privés.',
-    icon: FaNetworkWired,
-  },
-  {
-    title: 'Accompagnement de A à Z',
-    text: 'De la veille à l’opérationnel, une chaîne de valeur unifiée.',
-    icon: FaRoute,
-  },
-  {
-    title: 'Approche personnalisée',
-    text: 'Des équipes dédiées et une réactivité adaptée à chaque dossier.',
-    icon: FaUserCheck,
-  },
-];
-
 export default function Accueil() {
+  const { t } = useTranslation();
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -77,15 +32,25 @@ export default function Accueil() {
   const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
-  const [heroImg, setHeroImg] = useState(DEFAULT_HERO);
-  const [aboutImg, setAboutImg] = useState(DEFAULT_ABOUT);
+  const heroImg = DEFAULT_HERO;
+  const aboutImg = DEFAULT_ABOUT;
 
-  useEffect(() => {
-    api.get('/settings').then((res) => {
-      if (res.data?.heroImg) setHeroImg(res.data.heroImg);
-      if (res.data?.aboutImg) setAboutImg(res.data.aboutImg);
-    }).catch(() => {});
-  }, []);
+  const polesArrTrans = t('accueil.polesArr', { returnObjects: true });
+  const whyArrTrans = t('accueil.whyArr', { returnObjects: true });
+
+  const poles = [
+    { title: polesArrTrans[0].title, icon: FaTruck, desc: polesArrTrans[0].desc },
+    { title: polesArrTrans[1].title, icon: FaStore, desc: polesArrTrans[1].desc },
+    { title: polesArrTrans[2].title, icon: FaHandshake, desc: polesArrTrans[2].desc },
+    { title: polesArrTrans[3].title, icon: FaChartLine, desc: polesArrTrans[3].desc },
+  ];
+
+  const why = [
+    { title: whyArrTrans[0].title, text: whyArrTrans[0].text, icon: FaShieldAlt },
+    { title: whyArrTrans[1].title, text: whyArrTrans[1].text, icon: FaNetworkWired },
+    { title: whyArrTrans[2].title, text: whyArrTrans[2].text, icon: FaRoute },
+    { title: whyArrTrans[3].title, text: whyArrTrans[3].text, icon: FaUserCheck },
+  ];
 
   return (
     <>
@@ -121,15 +86,13 @@ export default function Accueil() {
             className="max-w-4xl"
           >
             <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl drop-shadow-md">
-              Bâtissons l&apos;avenir de vos investissements{' '}
+              {t('accueil.heroTitle1')}
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-smts-electric to-smts-accent filter drop-shadow-[0_0_15px_rgba(59,130,246,0.3)] mt-2">
-                en Mauritanie
+                {t('accueil.heroTitle2')}
               </span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg font-medium leading-relaxed text-smts-muted md:text-xl">
-              SMTS Group accompagne les investisseurs et entreprises avec des
-              solutions intégrées en commerce, logistique et facilitation
-              d&apos;affaires sur toute la chaîne de valeur.
+              {t('accueil.heroSubtitle')}
             </p>
             <div className="mt-12 flex flex-wrap gap-5">
               <Link
@@ -137,7 +100,7 @@ export default function Accueil() {
                 className="group btn-premium inline-flex items-center gap-3 px-8 py-4 text-sm"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#1e3a8a] to-smts-electric opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <span className="relative z-10">Découvrir nos expertises</span>
+                <span className="relative z-10">{t('accueil.btnExpertises')}</span>
                 <HiArrowRight className="relative z-10 text-lg transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
@@ -145,7 +108,7 @@ export default function Accueil() {
                 className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/5 px-8 py-4 text-sm font-bold text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:-translate-y-1"
               >
                 <HiMail className="text-lg text-smts-electric" />
-                Nous contacter
+                {t('accueil.btnContact')}
               </Link>
             </div>
           </motion.div>
@@ -158,26 +121,26 @@ export default function Accueil() {
           <AnimatedCounter
             prefix="+"
             value={10}
-            label="ans d'expérience"
+            label={t('accueil.statsYears')}
             icon={FaTrophy}
           />
           <AnimatedCounter
             prefix="+"
             value={50}
-            label="partenaires internationaux"
+            label={t('accueil.statsPartners')}
             icon={FaHandshake}
           />
           <AnimatedCounter
             prefix="+"
             value={40}
             suffix="k"
-            label="tonnes d'importations alimentaires"
+            label={t('accueil.statsImports')}
             icon={FaShoppingBasket}
           />
           <AnimatedCounter
             prefix="+"
             value={500}
-            label="tonnes/an d'exportations de poisson frais"
+            label={t('accueil.statsExports')}
             icon={FaFish}
           />
         </div>
@@ -195,22 +158,19 @@ export default function Accueil() {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-smts-electric/10 border border-smts-electric/20 text-smts-electric text-xs font-bold uppercase tracking-widest mb-6">
               <span className="w-2 h-2 rounded-full bg-smts-electric animate-pulse"></span>
-              À propos de nous
+              {t('accueil.aboutTag')}
             </div>
             <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 leading-tight">
-              Un acteur stratégique en Mauritanie
+              {t('accueil.aboutTitle')}
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-smts-muted">
-              SMTS Group est un acteur stratégique en Mauritanie, spécialisé dans
-              le commerce général, les services aux entreprises et la
-              facilitation des investissements. Nous connectons les opportunités
-              locales aux investisseurs internationaux à travers une expertise pointue.
+              {t('accueil.aboutText')}
             </p>
             <Link
               to="/le-groupe"
               className="mt-10 inline-flex items-center gap-3 rounded-full bg-white px-8 py-3.5 text-sm font-bold text-smts-navy transition-all hover:bg-gray-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] shadow-lg"
             >
-              Découvrir le groupe
+              {t('accueil.aboutBtn')}
             </Link>
           </motion.div>
           <motion.div
@@ -229,8 +189,8 @@ export default function Accueil() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent z-10" />
             <div className="absolute bottom-8 left-8 right-8 z-20">
               <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm shadow-2xl">
-                <p className="text-white font-bold tracking-wide">SMTS Group — HQ</p>
-                <p className="text-smts-electric text-xs font-semibold uppercase tracking-widest mt-1">Nouakchott</p>
+                <p className="text-white font-bold tracking-wide">{t('accueil.hqTitle')}</p>
+                <p className="text-smts-electric text-xs font-semibold uppercase tracking-widest mt-1">{t('accueil.hqCity')}</p>
               </div>
             </div>
           </motion.div>
@@ -247,10 +207,10 @@ export default function Accueil() {
             className="mx-auto max-w-2xl text-center"
           >
             <p className="text-sm font-bold uppercase tracking-widest text-smts-electric mb-4">
-              Nos pôles d&apos;activité
+              {t('accueil.polesTag')}
             </p>
             <h2 className="text-3xl font-extrabold md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-              Des expertises complémentaires prêtes à l'emploi
+              {t('accueil.polesTitle')}
             </h2>
           </motion.div>
           <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -286,7 +246,7 @@ export default function Accueil() {
               to="/le-groupe"
               className="inline-flex rounded-full border border-smts-muted/30 bg-white/5 py-4 px-10 text-sm font-bold text-white transition-all hover:border-smts-electric hover:bg-smts-electric/10 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] shadow-xl backdrop-blur-sm"
             >
-              Découvrir toutes les expertises
+              {t('accueil.allExpBtn')}
             </Link>
           </motion.div>
         </div>
@@ -302,10 +262,10 @@ export default function Accueil() {
             className="max-w-2xl"
           >
             <p className="text-sm font-bold uppercase tracking-widest text-smts-electric mb-4">
-              Pourquoi choisir SMTS Group
+              {t('accueil.whyTag')}
             </p>
             <h2 className="text-3xl font-extrabold md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-              Un partenaire engagé sur la durée
+              {t('accueil.whyTitle')}
             </h2>
           </motion.div>
           <div className="mt-16 grid gap-6 md:grid-cols-2">

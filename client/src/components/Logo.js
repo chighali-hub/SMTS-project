@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { useState, useEffect } from 'react';
-import api from '../api/client';
+
 
 export default function Logo({ className = '', admin = false }) {
   const [logo, setLogo] = useState('/smts_group_logo_1.png');
@@ -9,12 +9,6 @@ export default function Logo({ className = '', admin = false }) {
   useEffect(() => {
     const cached = sessionStorage.getItem('smts_logoImg');
     if (cached) setLogo(cached);
-    api.get('/settings').then(res => {
-      if (res.data?.logoImg) {
-        setLogo(res.data.logoImg);
-        sessionStorage.setItem('smts_logoImg', res.data.logoImg);
-      }
-    }).catch(() => {});
   }, []);
 
   return (

@@ -1,64 +1,40 @@
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaTruck, FaLeaf, FaChartLine, FaFish } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import Seo from '../components/Seo';
-import api from '../api/client';
 
 const DEFAULT_IMG = "https://scontent.fsvq4-1.fna.fbcdn.net/v/t39.30808-6/686196217_2028219524747649_207232292685776683_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=102&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeF26ApKKtwStmtZIA6uqzm5toKXUx8cT-e2gpdTHxxP59ZWejSBr0THgmou4kvZhpt8ptKoTY6Qi4_Suyx9zHrJ&_nc_ohc=NmaCoZMZkmQQ7kNvwF9bKvd&_nc_oc=Adp31BFV8jeMPMm3XqQ8Ub6AWnOTjI0zrJXdXWyumBfZvbeO5A1L5pJyPGHYlHmE708&_nc_zt=23&_nc_ht=scontent.fsvq4-1.fna&_nc_gid=rkFh59czFyWpW-OvwfuNJQ&_nc_ss=7b2a8&oh=00_Af5RU0Gb58fZDBhqawWQf8mhRpXxfKE0abKVaOlH5fr19A&oe=69FE33D5";
 
-const filiales = [
-  {
-    title: 'Logistique & Transport',
-    icon: FaTruck,
-    text: 'Solutions complètes de transport, stockage, distribution et consignation des navires de commerce.',
-    image: '/Logistique&Transport.jpeg.jpeg',
-  },
-  {
-    title: 'Import/Export',
-    icon: FaLeaf,
-    text: 'Import/export et commercialisation de produits alimentaires (sucre, lait...).',
-    image: '/ImportExport.jpeg',
-  },
-  {
-    title: 'Solutions Business',
-    icon: FaChartLine,
-    text: 'Accompagnement stratégique, représentation commerciale et conseil.',
-    image: '/smts-logo.png',
-  },
-  {
-    title: 'Poissons frais',
-    icon: FaFish,
-    text: 'Exportation de poissons frais.',
-    image: '/Poissons frais.jpeg',
-  },
-];
-
 export default function LeGroupe() {
-  const [img, setImg] = useState(DEFAULT_IMG);
-  const [fImgs, setFimgs] = useState({ log: '/Logistique&Transport.jpeg.jpeg', imp: '/ImportExport.jpeg', sol: '/smts-logo.png', poi: '/Poissons frais.jpeg' });
+  const { t } = useTranslation();
+  const img = DEFAULT_IMG;
 
-  useEffect(() => {
-    api.get('/settings').then((res) => {
-      if (res.data?.groupeImg) setImg(res.data.groupeImg);
-      if (res.data) {
-        setFimgs({
-          log: res.data.logistiqueImg || '/Logistique&Transport.jpeg.jpeg',
-          imp: res.data.importExportImg || '/ImportExport.jpeg',
-          sol: res.data.solutionsImg || '/smts-logo.png',
-          poi: res.data.poissonsImg || '/Poissons frais.jpeg'
-        });
-      }
-    }).catch(() => { });
-  }, []);
-
-  const dynamicFiliales = filiales.map(f => {
-    let finalImg = f.image;
-    if (f.title === 'Logistique & Transport') finalImg = fImgs.log;
-    if (f.title === 'Import/Export') finalImg = fImgs.imp;
-    if (f.title === 'Solutions Business') finalImg = fImgs.sol;
-    if (f.title === 'Poissons frais') finalImg = fImgs.poi;
-    return { ...f, image: finalImg };
-  });
+  const dynamicFiliales = [
+    {
+      title: t('groupe.filiales.logTitle'),     
+      icon: FaTruck,
+      text: t('groupe.filiales.logText'), 
+      image: '/Logistique&Transport.jpeg.jpeg',
+    },
+    {
+      title: t('groupe.filiales.impTitle'),
+      icon: FaLeaf,
+      text: t('groupe.filiales.impText'),
+      image: '/ImportExport.jpeg',
+    },
+    {
+      title: t('groupe.filiales.solTitle'),
+      icon: FaChartLine,
+      text: t('groupe.filiales.solText'),
+      image: '/smts-logo.png',
+    },
+    {
+      title: t('groupe.filiales.poiTitle'),
+      icon: FaFish,
+      text: t('groupe.filiales.poiText'),
+      image: '/Poissons frais.jpeg',
+    },
+  ];
 
   return (
     <>
@@ -83,53 +59,50 @@ export default function LeGroupe() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-smts-electric/10 border border-smts-electric/20 text-smts-electric text-xs font-bold uppercase tracking-widest mb-6">
             <span className="w-2 h-2 rounded-full bg-smts-electric animate-pulse"></span>
-            À propos de SMTS Group
+            {t('groupe.tag')}
           </div>
           <h1 className="text-4xl font-extrabold text-white md:text-5xl lg:text-6xl drop-shadow-md">
-            Une entreprise mauritanienne de{' '}
+            {t('groupe.title1')}{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-smts-electric to-smts-accent drop-shadow-[0_0_15px_rgba(59,130,246,0.3)]">
-              référence
+              {t('groupe.title2')}
             </span>
           </h1>
           <p className="mt-8 text-lg md:text-xl font-medium leading-relaxed text-smts-muted">
-            SMTS Group est une entreprise mauritanienne de référence opérant dans
-            plusieurs secteurs stratégiques. Notre mission est de faciliter les
-            opérations commerciales et d&apos;investissement en offrant des
-            solutions fiables, rapides et adaptées au marché local.
+            {t('groupe.subtitle')}
           </p>
         </motion.section>
 
-        <div className="mt-20 grid gap-8 md:grid-cols-3">
-          {[
-            {
-              k: 'Vision',
-              v: "Devenir le partenaire incontournable pour tout projet d'investissement en Mauritanie.",
-            },
-            {
-              k: 'Mission',
-              v: 'Accompagner les entreprises et investisseurs en leur offrant des solutions complètes et sécurisées.',
-            },
-            {
-              k: 'Valeurs',
-              v: 'Intégrité, excellence, engagement, innovation.',
-            },
-          ].map((item, i) => (
-            <motion.div
-              key={item.k}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="glass-card rounded-[2rem] p-8 lg:p-10 transition-all duration-300 hover:-translate-y-2 group"
-            >
-              <h2 className="text-2xl font-bold text-smts-electric group-hover:text-white transition-colors">{item.k}</h2>
-              <div className="mt-4 w-12 h-1 bg-gradient-to-r from-smts-electric to-smts-accent rounded-full transition-all group-hover:w-full" />
-              <p className="mt-6 text-base font-medium leading-relaxed text-white/75 group-hover:text-white transition-colors">
-                {item.v}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+          <div className="mt-20 grid gap-8 md:grid-cols-3">
+            {[
+              {
+                k: t('groupe.visionKey'),
+                v: t('groupe.vision'),
+              },
+              {
+                k: t('groupe.missionKey'),
+                v: t('groupe.mission'),
+              },
+              {
+                k: t('groupe.valuesKey'),
+                v: t('groupe.values'),
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={item.k}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="glass-card rounded-[2rem] p-8 lg:p-10 transition-all duration-300 hover:-translate-y-2 group"
+              >
+                <h2 className="text-2xl font-bold text-smts-electric group-hover:text-white transition-colors">{item.k}</h2>
+                <div className="mt-4 w-12 h-1 bg-gradient-to-r from-smts-electric to-smts-accent rounded-full transition-all group-hover:w-full" />
+                <p className="mt-6 text-base font-medium leading-relaxed text-white/75 group-hover:text-white transition-colors">
+                  {item.v}
+                </p>
+              </motion.div>
+            ))}
+          </div>
 
         <motion.section
           initial={{ opacity: 0, scale: 0.95 }}
@@ -152,15 +125,12 @@ export default function LeGroupe() {
                 “
               </span>
               <blockquote className="relative z-10 text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed text-white tracking-wide">
-                Chez SMTS Group, nous croyons fermement au potentiel économique
-                de la Mauritanie. Notre ambition est de créer des ponts solides
-                entre les investisseurs internationaux et les opportunités
-                locales.
+                {t('groupe.quote')}
               </blockquote>
               <div className="mt-10 flex items-center gap-4">
                 <div className="w-12 h-px bg-smts-electric/50" />
                 <p className="text-sm font-bold uppercase tracking-widest text-smts-electric">
-                  Mot du Président
+                  {t('groupe.quoteAuthor')}
                 </p>
               </div>
             </div>
@@ -175,10 +145,10 @@ export default function LeGroupe() {
             className="text-center max-w-2xl mx-auto"
           >
             <p className="text-sm font-bold uppercase tracking-widest text-smts-electric mb-4">
-              Nos piliers économiques
+              {t('groupe.pilierTag')}
             </p>
             <h2 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-              Nos filiales
+              {t('groupe.pilierTitle')}
             </h2>
           </motion.div>
 
