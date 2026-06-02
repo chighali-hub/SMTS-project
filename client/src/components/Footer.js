@@ -11,6 +11,7 @@ export default function Footer() {
     { to: '/le-groupe', label: t('nav.groupe') },
     { to: '/investir', label: t('nav.investir') },
     { to: '/expertises', label: t('nav.expertises') },
+    { to: '/galerie', label: t('nav.galerie') },
     { to: '/contact', label: t('nav.contact') },
   ];
 

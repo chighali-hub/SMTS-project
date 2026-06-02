@@ -18,9 +18,7 @@ import {
 import { HiArrowRight, HiMail } from 'react-icons/hi';
 import Seo from '../components/Seo';
 import AnimatedCounter from '../components/AnimatedCounter';
-
-const DEFAULT_HERO = 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=2000&q=80';
-const DEFAULT_ABOUT = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80';
+import { SITE_IMAGES } from '../constants/siteImages';
 
 export default function Accueil() {
   const { t } = useTranslation();
@@ -32,8 +30,8 @@ export default function Accueil() {
   const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
-  const heroImg = DEFAULT_HERO;
-  const aboutImg = DEFAULT_ABOUT;
+  const heroImg = SITE_IMAGES.heroAccueil;
+  const aboutImg = SITE_IMAGES.aboutAccueil;
 
   const polesArrTrans = t('accueil.polesArr', { returnObjects: true });
   const whyArrTrans = t('accueil.whyArr', { returnObjects: true });
@@ -183,7 +181,7 @@ export default function Accueil() {
             <div className="absolute inset-0 bg-smts-electric/20  z-10 group-hover:opacity-0 transition-opacity duration-700" />
             <img
               src={aboutImg}
-              alt="Immeuble corporate SMTS Group — excellence et présence locale"
+              alt="Équipe professionnelle SMTS Group — collaboration et expertise"
               className="h-full min-h-[400px] w-full object-cover transition-transform duration-1000 group-hover:scale-105 filter grayscale-[20%]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent z-10" />

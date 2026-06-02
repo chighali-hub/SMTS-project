@@ -2,12 +2,11 @@ import { motion } from 'framer-motion';
 import { FaTruck, FaLeaf, FaChartLine, FaFish } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import Seo from '../components/Seo';
-
-const DEFAULT_IMG = "https://scontent.fsvq4-1.fna.fbcdn.net/v/t39.30808-6/686196217_2028219524747649_207232292685776683_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=102&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeF26ApKKtwStmtZIA6uqzm5toKXUx8cT-e2gpdTHxxP59ZWejSBr0THgmou4kvZhpt8ptKoTY6Qi4_Suyx9zHrJ&_nc_ohc=NmaCoZMZkmQQ7kNvwF9bKvd&_nc_oc=Adp31BFV8jeMPMm3XqQ8Ub6AWnOTjI0zrJXdXWyumBfZvbeO5A1L5pJyPGHYlHmE708&_nc_zt=23&_nc_ht=scontent.fsvq4-1.fna&_nc_gid=rkFh59czFyWpW-OvwfuNJQ&_nc_ss=7b2a8&oh=00_Af5RU0Gb58fZDBhqawWQf8mhRpXxfKE0abKVaOlH5fr19A&oe=69FE33D5";
+import { SITE_IMAGES } from '../constants/siteImages';
 
 export default function LeGroupe() {
   const { t } = useTranslation();
-  const img = DEFAULT_IMG;
+  const img = SITE_IMAGES.groupeDirection;
 
   const dynamicFiliales = [
     {
@@ -115,7 +114,7 @@ export default function LeGroupe() {
             <div className="relative min-h-[400px] md:min-h-[auto] group">
               <img
                 src={img}
-                alt="Présidence SMTS Group"
+                alt="Direction SMTS Group — réunion stratégique"
                 className="absolute inset-0 h-full w-full object-cover opacity-80 filter grayscale-[30%] transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-[#030712]/90 via-[#030712]/50 to-transparent" />

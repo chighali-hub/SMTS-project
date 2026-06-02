@@ -10,7 +10,57 @@ const resources = {
         groupe: "Le Groupe",
         investir: "Investir en Mauritanie",
         expertises: "Nos Expertises",
+        galerie: "Galerie",
         contact: "Contact"
+      },
+      galerie: {
+        seoTitle: "Galerie",
+        seoDescription: "Poissons frais et surgelés, sucre, légumes, huiles végétales et lait en poudre — SMTS Group.",
+        tag: "Produits & export",
+        title1: "Notre ",
+        title2: "Galerie",
+        subtitle: "Découvrez nos gammes de produits alimentaires et nos solutions d'exportation vers les marchés internationaux.",
+        sections: {
+          poissons: {
+            title: "Poissons Frais & Surgelés",
+            headline: "Solutions d'Exportation Sur Mesure",
+            paragraphs: [
+              "Nous exportons des poissons frais et surgelés selon les besoins spécifiques de nos partenaires internationaux vers l'Europe, l'Asie et l'Afrique",
+              "Nous accompagnons également les investisseurs et acheteurs professionnels dans le sourcing et l'acquisition de produits issus du marché local, avec un service fiable, transparent et conforme aux standards du commerce international"
+            ]
+          },
+          sucre: {
+            title: "Sucre Blanc Raffiné",
+            headline: "Pureté Brésilienne, Qualité Internationale",
+            paragraphs: [
+              "Nous importons du sucre blanc raffiné brésilien de haute qualité, reconnu pour sa pureté et sa conformité aux standards internationaux",
+              "Grâce à un approvisionnement fiable et régulier, nous répondons aux besoins du marché local ainsi qu'aux exigences des partenaires commerciaux régionaux"
+            ]
+          },
+          legumes: {
+            title: "Oignons Jaunes & Pommes de Terre",
+            headline: "Importation Premium, Distribution Régionale",
+            paragraphs: [
+              "Nous importons d'importantes quantités d'oignons jaunes et de pommes de terre de haute qualité en provenance des Pays-Bas, de Belgique et d'Égypte, afin d'approvisionner le marché local et de répondre également aux besoins des marchés régionaux à travers la réexportation vers les pays voisins"
+            ]
+          },
+          huiles: {
+            title: "Huiles Végétales",
+            headline: "Excellence Malaisienne, Pureté Internationale",
+            paragraphs: [
+              "Nous importons des huiles végétales de haute qualité en provenance de Malaisie, reconnues pour leur pureté, leur stabilité et leur excellence nutritionnelle. Sélectionnées avec soin selon les standards internationaux, elles répondent aux besoins du marché local ainsi qu'aux exigences des professionnels et de l'industrie agroalimentaire"
+            ]
+          },
+          lait: {
+            title: "Lait en Poudre",
+            headline: "Qualité Internationale, Approvisionnement Fiable",
+            paragraphs: [
+              "Nous importons du lait en poudre de haute qualité conditionné en sacs de 25 kg, sélectionné auprès de producteurs internationaux reconnus",
+              "Grâce à une chaîne d'approvisionnement fiable et performante, nous contribuons à répondre aux besoins du marché mauritanien tout en accompagnant les flux commerciaux vers les marchés des pays voisins",
+              "Notre engagement repose sur la qualité, la régularité des approvisionnements et la satisfaction durable de nos partenaires"
+            ]
+          }
+        }
       },
       footer: {
         intro: "Acteur stratégique en Mauritanie : commerce, logistique et facilitation d'investissement pour entreprises et investisseurs internationaux.",
@@ -158,6 +208,7 @@ const resources = {
         title1: "Échangeons sur ",
         title2: "votre projet",
         subtitle: "Notre équipe répond dans les meilleurs délais pour structurer vos opérations en Mauritanie.",
+        visualCaption: "Construisons ensemble des partenariats durables, fondés sur la confiance et l'excellence opérationnelle.",
         loc: "Localisation",
         dir: "Direction Générale",
         com: "Contact Commercial",
@@ -200,7 +251,57 @@ const resources = {
         groupe: "المجموعة",
         investir: "الاستثمار في موريتانيا",
         expertises: "خبراتنا",
+        galerie: "المعرض",
         contact: "اتصل بنا"
+      },
+      galerie: {
+        seoTitle: "المعرض",
+        seoDescription: "أسماك طازجة ومجمدة، سكر، خضروات، زيوت نباتية وحليب بودرة — مجموعة SMTS.",
+        tag: "المنتجات والتصدير",
+        title1: "معرض ",
+        title2: "المنتجات",
+        subtitle: "اكتشفوا مجموعاتنا من المنتجات الغذائية وحلول التصدير نحو الأسواق الدولية.",
+        sections: {
+          poissons: {
+            title: "أسماك طازجة ومجمدة",
+            headline: "حلول تصدير مخصصة",
+            paragraphs: [
+              "نصدر الأسماك الطازجة والمجمدة وفق احتياجات شركائنا الدوليين نحو أوروبا وآسيا وأفريقيا",
+              "نرافق المستثمرين والمشترين المحترفين في التوريد واقتناء المنتجات من السوق المحلي بخدمة موثوقة وشفافة ومتوافقة مع معايير التجارة الدولية"
+            ]
+          },
+          sucre: {
+            title: "سكر أبيض مكرر",
+            headline: "نقاء برازيلي، جودة دولية",
+            paragraphs: [
+              "نستورد سكراً أبيض مكرراً برازيلياً عالي الجودة، معروفاً بنقائه وامتثاله للمعايير الدولية",
+              "بفضل توريد موثوق ومنتظم، نلبي احتياجات السوق المحلي ومتطلبات الشركاء التجاريين الإقليميين"
+            ]
+          },
+          legumes: {
+            title: "بصل أصفر وبطاطس",
+            headline: "استيراد متميز، توزيع إقليمي",
+            paragraphs: [
+              "نستورد كميات كبيرة من البصل الأصفر والبطاطس عالية الجودة من هولندا وبلجيكا ومصر لتزويد السوق المحلي وتلبية الأسواق الإقليمية عبر إعادة التصدير إلى الدول المجاورة"
+            ]
+          },
+          huiles: {
+            title: "زيوت نباتية",
+            headline: "تميز ماليزي، نقاء دولي",
+            paragraphs: [
+              "نستورد زيوتاً نباتية عالية الجودة من ماليزيا، معروفة بنقائها واستقرارها وقيمتها الغذائية. تُختار بعناية وفق المعايير الدولية لتلبية احتياجات السوق المحلي ومتطلبات المهنيين وصناعة الأغذية"
+            ]
+          },
+          lait: {
+            title: "حليب بودرة",
+            headline: "جودة دولية، توريد موثوق",
+            paragraphs: [
+              "نستورد حليباً بودرة عالي الجودة معبأً في أكياس 25 كغ، مختاراً من منتجين دوليين معترف بهم",
+              "بفضل سلسلة توريد موثوقة وفعالة، نساهم في تلبية احتياجات السوق الموريتاني مع دعم التدفقات التجارية نحو أسواق الدول المجاورة",
+              "التزامنا يقوم على الجودة وانتظام التوريد ورضا شركائنا على المدى الطويل"
+            ]
+          }
+        }
       },
       footer: {
         intro: "فاعل استراتيجي في موريتانيا: التجارة، اللوجستيات، وتسهيل الاستثمار للشركات والمستثمرين الدوليين.",
@@ -348,6 +449,7 @@ const resources = {
         title1: "لنتحدث عن ",
         title2: "مشروعك",
         subtitle: "يرد فريقنا في أقرب وقت ممكن لهيكلة عملياتك في موريتانيا.",
+        visualCaption: "لنبني معاً شراكات مستدامة قائمة على الثقة والتميز التشغيلي.",
         loc: "الموقع",
         dir: "الإدارة العامة",
         com: "الاتصال التجاري",
@@ -390,7 +492,57 @@ const resources = {
         groupe: "The Group",
         investir: "Invest in Mauritania",
         expertises: "Our Expertise",
+        galerie: "Gallery",
         contact: "Contact"
+      },
+      galerie: {
+        seoTitle: "Gallery",
+        seoDescription: "Fresh and frozen fish, sugar, vegetables, vegetable oils, and powdered milk — SMTS Group.",
+        tag: "Products & export",
+        title1: "Our ",
+        title2: "Gallery",
+        subtitle: "Discover our food product ranges and export solutions for international markets.",
+        sections: {
+          poissons: {
+            title: "Fresh & Frozen Fish",
+            headline: "Tailored Export Solutions",
+            paragraphs: [
+              "We export fresh and frozen fish according to the specific needs of our international partners to Europe, Asia, and Africa",
+              "We also support investors and professional buyers in sourcing and acquiring products from the local market, with reliable, transparent service aligned with international trade standards"
+            ]
+          },
+          sucre: {
+            title: "Refined White Sugar",
+            headline: "Brazilian Purity, International Quality",
+            paragraphs: [
+              "We import high-quality Brazilian refined white sugar, recognized for its purity and compliance with international standards",
+              "Through reliable, regular supply, we meet local market needs and the requirements of regional commercial partners"
+            ]
+          },
+          legumes: {
+            title: "Yellow Onions & Potatoes",
+            headline: "Premium Import, Regional Distribution",
+            paragraphs: [
+              "We import substantial quantities of high-quality yellow onions and potatoes from the Netherlands, Belgium, and Egypt to supply the local market and regional markets through re-export to neighboring countries"
+            ]
+          },
+          huiles: {
+            title: "Vegetable Oils",
+            headline: "Malaysian Excellence, International Purity",
+            paragraphs: [
+              "We import high-quality vegetable oils from Malaysia, valued for their purity, stability, and nutritional excellence. Carefully selected to international standards, they meet local market needs and the requirements of professionals and the food industry"
+            ]
+          },
+          lait: {
+            title: "Powdered Milk",
+            headline: "International Quality, Reliable Supply",
+            paragraphs: [
+              "We import high-quality powdered milk packaged in 25 kg bags, selected from recognized international producers",
+              "Through a reliable and efficient supply chain, we help meet the needs of the Mauritanian market while supporting commercial flows to neighboring countries",
+              "Our commitment is built on quality, regular supply, and lasting satisfaction for our partners"
+            ]
+          }
+        }
       },
       footer: {
         intro: "A strategic player in Mauritania: trade, logistics, and investment facilitation for international companies and investors.",
@@ -538,6 +690,7 @@ const resources = {
         title1: "Let's discuss ",
         title2: "your project",
         subtitle: "Our team responds as quickly as possible to structure your operations in Mauritania.",
+        visualCaption: "Let's build lasting partnerships founded on trust and operational excellence.",
         loc: "Location",
         dir: "General Management",
         com: "Commercial Contact",
@@ -580,7 +733,57 @@ const resources = {
         groupe: "El Grupo",
         investir: "Invertir en Mauritania",
         expertises: "Nuestra Experiencia",
+        galerie: "Galería",
         contact: "Contacto"
+      },
+      galerie: {
+        seoTitle: "Galería",
+        seoDescription: "Pescado fresco y congelado, azúcar, verduras, aceites vegetales y leche en polvo — SMTS Group.",
+        tag: "Productos y exportación",
+        title1: "Nuestra ",
+        title2: "Galería",
+        subtitle: "Descubra nuestras gamas de productos alimentarios y soluciones de exportación hacia los mercados internacionales.",
+        sections: {
+          poissons: {
+            title: "Pescado Fresco y Congelado",
+            headline: "Soluciones de Exportación a Medida",
+            paragraphs: [
+              "Exportamos pescado fresco y congelado según las necesidades específicas de nuestros socios internacionales hacia Europa, Asia y África",
+              "También acompañamos a inversores y compradores profesionales en el abastecimiento y la adquisición de productos del mercado local, con un servicio fiable, transparente y conforme a los estándares del comercio internacional"
+            ]
+          },
+          sucre: {
+            title: "Azúcar Blanco Refinado",
+            headline: "Pureza Brasileña, Calidad Internacional",
+            paragraphs: [
+              "Importamos azúcar blanco refinado brasileño de alta calidad, reconocido por su pureza y conformidad con los estándares internacionales",
+              "Gracias a un suministro fiable y regular, respondemos a las necesidades del mercado local y a las exigencias de los socios comerciales regionales"
+            ]
+          },
+          legumes: {
+            title: "Cebollas Amarillas y Patatas",
+            headline: "Importación Premium, Distribución Regional",
+            paragraphs: [
+              "Importamos importantes cantidades de cebollas amarillas y patatas de alta calidad de Países Bajos, Bélgica y Egipto para abastecer el mercado local y los mercados regionales mediante la reexportación a países vecinos"
+            ]
+          },
+          huiles: {
+            title: "Aceites Vegetales",
+            headline: "Excelencia Malasia, Pureza Internacional",
+            paragraphs: [
+              "Importamos aceites vegetales de alta calidad de Malasia, reconocidos por su pureza, estabilidad y excelencia nutricional. Seleccionados según los estándares internacionales, satisfacen las necesidades del mercado local y las exigencias de los profesionales y la industria alimentaria"
+            ]
+          },
+          lait: {
+            title: "Leche en Polvo",
+            headline: "Calidad Internacional, Suministro Fiable",
+            paragraphs: [
+              "Importamos leche en polvo de alta calidad en sacos de 25 kg, seleccionada entre productores internacionales reconocidos",
+              "Gracias a una cadena de suministro fiable y eficiente, contribuimos a satisfacer las necesidades del mercado mauritano y acompañamos los flujos comerciales hacia los mercados de los países vecinos",
+              "Nuestro compromiso se basa en la calidad, la regularidad de los suministros y la satisfacción duradera de nuestros socios"
+            ]
+          }
+        }
       },
       footer: {
         intro: "Un actor estratégico en Mauritania: comercio, logística y facilitación de inversiones para empresas e inversores internacionales.",
@@ -728,6 +931,7 @@ const resources = {
         title1: "Hablemos de ",
         title2: "su proyecto",
         subtitle: "Nuestro equipo responde lo antes posible para estructurar sus operaciones en Mauritania.",
+        visualCaption: "Construyamos juntos alianzas duraderas basadas en la confianza y la excelencia operativa.",
         loc: "Ubicación",
         dir: "Dirección General",
         com: "Contacto Comercial",

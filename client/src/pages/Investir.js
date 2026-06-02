@@ -4,12 +4,11 @@ import { FaGasPump, FaGem, FaFish, FaBroadcastTower } from 'react-icons/fa';
 import { HiArrowRight } from 'react-icons/hi';
 import Seo from '../components/Seo';
 import { useTranslation } from 'react-i18next';
-
-const DEFAULT_IMG = "https://i1-c.pinimg.com/1200x/71/74/de/7174de9a84626b2b809dff6ae4837624.jpg";
+import { SITE_IMAGES } from '../constants/siteImages';
 
 export default function Investir() {
   const { t } = useTranslation();
-  const img = DEFAULT_IMG;
+  const img = SITE_IMAGES.investirProjets;
 
   const secteurs = [
     {
@@ -91,7 +90,7 @@ export default function Investir() {
             <div className="absolute inset-0 bg-smts-electric/10  z-10 group-hover:opacity-0 transition-opacity duration-700" />
             <img
               src={img}
-              alt="Vue aérienne — littoral et territoire mauritanien"
+              alt="Équipe sur site industriel — accompagnement de projets d'investissement"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105 filter grayscale-[10%]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent z-10" />

@@ -13,6 +13,7 @@ export default function Navbar() {
     { to: '/le-groupe', label: t('nav.groupe', 'Le Groupe') },
     { to: '/investir', label: t('nav.investir', 'Investir') },
     { to: '/expertises', label: t('nav.expertises', 'Nos Expertises') },
+    { to: '/galerie', label: t('nav.galerie', 'Galerie') },
     { to: '/contact', label: t('nav.contact', 'Contact') },
   ];
   const isRTL = i18n.language?.startsWith('ar');
