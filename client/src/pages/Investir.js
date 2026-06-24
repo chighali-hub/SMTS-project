@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaGasPump, FaGem, FaFish, FaBroadcastTower } from 'react-icons/fa';
 import { HiArrowRight } from 'react-icons/hi';
 import Seo from '../components/Seo';
@@ -9,27 +10,36 @@ import { SITE_IMAGES } from '../constants/siteImages';
 export default function Investir() {
   const { t } = useTranslation();
   const img = SITE_IMAGES.investirProjets;
+  const [expanded, setExpanded] = useState(null);
 
   const secteurs = [
     {
+      key: 'gas',
       title: t('investir.secteurs.gasTitle'),
       icon: FaGasPump,
       text: t('investir.secteurs.gasText'),
+      moreText: t('investir.secteurs.gasMore'),
     },
     {
+      key: 'min',
       title: t('investir.secteurs.minTitle'),
       icon: FaGem,
       text: t('investir.secteurs.minText'),
+      moreText: t('investir.secteurs.minMore'),
     },
     {
+      key: 'fish',
       title: t('investir.secteurs.fishTitle'),
       icon: FaFish,
       text: t('investir.secteurs.fishText'),
+      moreText: t('investir.secteurs.fishMore'),
     },
     {
+      key: 'tel',
       title: t('investir.secteurs.telTitle'),
       icon: FaBroadcastTower,
       text: t('investir.secteurs.telText'),
+      moreText: t('investir.secteurs.telMore'),
     },
   ];
 
@@ -106,17 +116,19 @@ export default function Investir() {
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {secteurs.map((s, i) => (
+            {secteurs.map((s, i) => {
+              const isOpen = expanded === s.key;
+              return (
               <motion.div
-                key={s.title}
+                key={s.key}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ delay: i * 0.1, type: "spring" }}
-                className="glass-card group relative p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(59,130,246,0.15)] overflow-hidden rounded-3xl"
+                className="glass-card group relative flex flex-col p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(59,130,246,0.15)] overflow-hidden rounded-3xl"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-smts-electric/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <div className="relative z-10">
+                <div className="relative z-10 flex flex-col flex-1">
                   <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-smts-electric/20 to-smts-accent/20 text-smts-electric shadow-lg transition-transform duration-500 group-hover:-translate-y-1">
                     <s.icon size={26} />
                   </div>
@@ -124,9 +136,31 @@ export default function Investir() {
                   <p className="mt-4 text-sm font-medium leading-relaxed text-smts-muted">
                     {s.text}
                   </p>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.p
+                        key="more"
+                        initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                        animate={{ opacity: 1, height: 'auto', marginTop: 16 }}
+                        exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                        transition={{ duration: 0.35, ease: 'easeInOut' }}
+                        className="overflow-hidden text-sm font-medium leading-relaxed text-white/80 border-t border-white/10 pt-4"
+                      >
+                        {s.moreText}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                  <button
+                    type="button"
+                    onClick={() => setExpanded(isOpen ? null : s.key)}
+                    className="mt-6 inline-flex items-center gap-2 self-start rounded-full border border-smts-electric/30 bg-smts-electric/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-smts-electric transition-all hover:bg-smts-electric/20 hover:border-smts-electric/50"
+                  >
+                    {isOpen ? t('investir.learnLess') : t('investir.learnMore')}
+                  </button>
                 </div>
               </motion.div>
-            ))}
+            );
+            })}
           </div>
         </section>
 

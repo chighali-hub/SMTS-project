@@ -151,7 +151,7 @@ const resources = {
             solTitle: "Solutions Business",
             solText: "Accompagnement stratégique, représentation commerciale et conseil.",
             poiTitle: "Poissons frais",
-            poiText: "Exportation de poissons frais."
+            poiText: "Exportation de poissons frais et congelés."
         }
       },
       expertises: {
@@ -169,6 +169,8 @@ const resources = {
           logList: ["Fret international", "Gestion des stocks", "Distribution locale"],
           douTitle: "Déclarant en douane",
           douText: "Gestion complète des formalités douanières pour un dédouanement rapide et sécurisé.",
+          marTitle: "Expertise Maritime, Inspection et Contrôle des Marchandises",
+          marText: "Nous proposons des services d'expertise maritime, d'inspection et de contrôle des marchandises afin de vérifier la qualité, la quantité et la conformité des cargaisons. Ces interventions permettent de sécuriser les transactions commerciales, de constater les éventuels dommages et de faciliter le règlement des différends entre vendeurs, acheteurs, transporteurs et assureurs.",
           comTitle: "Commerce de denrées alimentaires",
           comText: "Importation et distribution de produits alimentaires essentiels.",
           comList: ["Légumes", "Huiles", "Sucre", "Lait (poudre et UHT)"]
@@ -181,15 +183,21 @@ const resources = {
         subtitle: "La Mauritanie offre un environnement riche en ressources naturelles et en opportunités économiques. SMTS Group agit comme passerelle stratégique entre investisseurs et décideurs locaux.",
         secTag: "Secteurs clés",
         secSub: "Une terre d'opportunités pour le développement continental",
+        learnMore: "En savoir plus",
+        learnLess: "Voir moins",
         secteurs: {
           gasTitle: "Gaz",
           gasText: "Un secteur en pleine croissance avec des projets internationaux majeurs.",
+          gasMore: "Grâce au développement de ses ressources énergétiques, la Mauritanie offre des perspectives prometteuses pour les investissements dans l'exploration et le développement des ressources gazières, aussi bien offshore qu'onshore. Ce secteur stratégique ouvre la voie à de nouvelles opportunités dans l'énergie, les infrastructures et les services associés.",
           minTitle: "Mines (Or & Fer)",
           minText: "La Mauritanie est l'un des principaux producteurs de ressources minières en Afrique.",
+          minMore: "Grâce à ses importantes réserves de fer et d'or, la Mauritanie s'impose comme l'une des destinations les plus prometteuses pour les investissements miniers en Afrique.",
           fishTitle: "Pêche",
           fishText: "Un des secteurs les plus dynamiques grâce à des ressources maritimes abondantes.",
+          fishMore: "Grâce à l'abondance de ses ressources halieutiques, la Mauritanie offre des opportunités exceptionnelles dans la pêche industrielle, la pêche côtière, la pêche artisanale et les pêcheries pélagiques. Ce potentiel unique favorise le développement d'investissements durables dans la capture, la transformation, la logistique et l'exportation des produits de la mer vers les marchés internationaux.",
           telTitle: "Télécommunications",
-          telText: "Un marché en expansion avec une forte demande en innovation."
+          telText: "Un marché en expansion avec une forte demande en innovation.",
+          telMore: "Porté par une demande croissante en connectivité et en services numériques, le secteur des télécommunications en Mauritanie offre des opportunités attractives d'investissement dans les infrastructures, les technologies de l'information, les services digitaux et l'innovation."
         },
         roleTitle: "Notre rôle stratégique",
         roleSub: "SMTS Group agit comme une passerelle stratégique entre investisseurs et décideurs locaux. Nous facilitons chacune de ces étapes décisives :",

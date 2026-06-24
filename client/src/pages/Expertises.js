@@ -6,6 +6,7 @@ import {
   FaTruck,
   FaFileAlt,
   FaCarrot,
+  FaShip,
 } from 'react-icons/fa';
 import Seo from '../components/Seo';
 import { useTranslation } from 'react-i18next';
@@ -31,6 +32,12 @@ export default function Expertises() {
       icon: FaTruck,
       text: t('expertises.blocks.logText'),
       list: t('expertises.blocks.logList', { returnObjects: true }),
+    },
+    {
+      title: t('expertises.blocks.marTitle'),
+      icon: FaShip,
+      text: t('expertises.blocks.marText'),
+      list: [],
     },
     {
       title: t('expertises.blocks.douTitle'),
