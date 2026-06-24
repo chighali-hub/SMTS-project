@@ -400,7 +400,7 @@ const resources = {
             solTitle: "حلول الأعمال",
             solText: "المرافقة الاستراتيجية والتمثيل التجاري والاستشارات.",
             poiTitle: "الأسماك الطازجة",
-            poiText: "تصدير الأسماك الطازجة."
+            poiText: "تصدير الأسماك الطازجة والمجمدة."
         }
       },
       expertises: {
@@ -418,6 +418,8 @@ const resources = {
           logList: ["الشحن الدولي", "إدارة المخزون", "التوزيع المحلي"],
           douTitle: "التخليص الجمركي",
           douText: "الإدارة الكاملة للإجراءات الجمركية لتخليص سريع وآمن.",
+          marTitle: "الخبرة البحرية وفحص ومراقبة البضائع",
+          marText: "نقدم خدمات الخبرة البحرية وفحص ومراقبة البضائع للتحقق من جودة وكمية ومطابقة الشحنات. تتيح هذه التدخلات تأمين المعاملات التجارية وتوثيق الأضرار المحتملة وتسهيل تسوية النزاعات بين البائعين والمشترين والناقلين وشركات التأمين.",
           comTitle: "تجارة المواد الغذائية",
           comText: "استيراد وتوزيع المنتجات الغذائية الأساسية.",
           comList: ["الخضروات", "الزيوت", "السكر", "الحليب"]
@@ -430,15 +432,21 @@ const resources = {
         subtitle: "توفر موريتانيا بيئة غنية بالموارد الطبيعية والفرص الاقتصادية. تعمل مجموعة SMTS كجسر استراتيجي بين المستثمرين وصناع القرار المحليين.",
         secTag: "القطاعات الرئيسية",
         secSub: "أرض الفرص للتنمية القارية",
+        learnMore: "اعرف المزيد",
+        learnLess: "عرض أقل",
         secteurs: {
           gasTitle: "الغاز",
           gasText: "قطاع سريع النمو مع مشاريع دولية كبرى.",
+          gasMore: "بفضل تطوير مواردها الطاقوية، توفر موريتانيا آفاقاً واعدة للاستثمار في استكشاف وتطوير الموارد الغازية، سواء في البحر أو على اليابسة. يفتح هذا القطاع الاستراتيجي الباب أمام فرص جديدة في الطاقة والبنى التحتية والخدمات المرتبطة بها.",
           minTitle: "المعادن (الذهب والحديد)",
           minText: "موريتانيا هي واحدة من المنتجين الرئيسيين للموارد المعدنية في أفريقيا.",
+          minMore: "بفضل احتياطياتها الكبيرة من الحديد والذهب، تبرز موريتانيا كإحدى الوجهات الأكثر وعداً للاستثمارات التعدينية في أفريقيا.",
           fishTitle: "الصيد",
           fishText: "أحد القطاعات الأكثر ديناميكية بفضل الموارد البحرية الوفيرة.",
+          fishMore: "بفضل وفرة مواردها السمكية، توفر موريتانيا فرصاً استثنائية في الصيد الصناعي والساحلي والتقليدي ومصائد الأسماك السطحية. يعزز هذا الإمكان الفريد تطوير استثمارات مستدامة في الصيد والتحويل واللوجستيات وتصدير منتجات البحر إلى الأسواق الدولية.",
           telTitle: "الاتصالات",
-          telText: "سوق متوسع مع طلب قوي على الابتكار."
+          telText: "سوق متوسع مع طلب قوي على الابتكار.",
+          telMore: "مدفوعاً بطلب متزايد على الاتصال والخدمات الرقمية، يوفر قطاع الاتصالات في موريتانيا فرصاً جذابة للاستثمار في البنى التحتية وتكنولوجيا المعلومات والخدمات الرقمية والابتكار."
         },
         roleTitle: "دورنا الاستراتيجي",
         roleSub: "تعمل مجموعة SMTS كجسر استراتيجي بين المستثمرين وصناع القرار المحليين. نسهل كل مرحلة من هذه المراحل الحاسمة:",
@@ -641,7 +649,7 @@ const resources = {
             solTitle: "Business Solutions",
             solText: "Strategic support, commercial representation, and consulting.",
             poiTitle: "Fresh Fish",
-            poiText: "Export of fresh fish."
+            poiText: "Export of fresh and frozen fish."
         }
       },
       expertises: {
@@ -659,6 +667,8 @@ const resources = {
           logList: ["International freight", "Inventory management", "Local distribution"],
           douTitle: "Customs Broker",
           douText: "Complete management of customs formalities for fast and secure clearance.",
+          marTitle: "Maritime Expertise, Inspection and Cargo Control",
+          marText: "We provide maritime expertise, inspection and cargo control services to verify the quality, quantity and compliance of shipments. These interventions help secure commercial transactions, document any damage and facilitate dispute resolution between sellers, buyers, carriers and insurers.",
           comTitle: "Food Trade",
           comText: "Importation and distribution of essential food products.",
           comList: ["Vegetables", "Oils", "Sugar", "Milk (powder and UHT)"]
@@ -671,15 +681,21 @@ const resources = {
         subtitle: "Mauritania offers an environment rich in natural resources and economic opportunities. SMTS Group acts as a strategic bridge between investors and local decision-makers.",
         secTag: "Key Sectors",
         secSub: "A land of opportunities for continental development",
+        learnMore: "Learn more",
+        learnLess: "Show less",
         secteurs: {
           gasTitle: "Gas",
           gasText: "A rapidly growing sector with major international projects.",
+          gasMore: "Thanks to the development of its energy resources, Mauritania offers promising prospects for investment in the exploration and development of gas resources, both offshore and onshore. This strategic sector opens the way to new opportunities in energy, infrastructure and related services.",
           minTitle: "Mining (Gold & Iron)",
           minText: "Mauritania is one of the leading producers of mineral resources in Africa.",
+          minMore: "Thanks to its significant iron and gold reserves, Mauritania stands out as one of the most promising destinations for mining investment in Africa.",
           fishTitle: "Fishing",
           fishText: "One of the most dynamic sectors thanks to abundant maritime resources.",
+          fishMore: "Thanks to the abundance of its fishery resources, Mauritania offers exceptional opportunities in industrial fishing, coastal fishing, artisanal fishing and pelagic fisheries. This unique potential supports sustainable investment in catching, processing, logistics and exporting seafood products to international markets.",
           telTitle: "Telecommunications",
-          telText: "An expanding market with high demand for innovation."
+          telText: "An expanding market with high demand for innovation.",
+          telMore: "Driven by growing demand for connectivity and digital services, Mauritania's telecommunications sector offers attractive investment opportunities in infrastructure, information technology, digital services and innovation."
         },
         roleTitle: "Our Strategic Role",
         roleSub: "SMTS Group acts as a strategic bridge between investors and local decision-makers. We facilitate each of these decisive steps:",
@@ -882,7 +898,7 @@ const resources = {
             solTitle: "Soluciones de Negocio",
             solText: "Apoyo estratégico, representación comercial y consultoría.",
             poiTitle: "Pescado fresco",
-            poiText: "Exportación de pescado fresco."
+            poiText: "Exportación de pescado fresco y congelado."
         }
       },
       expertises: {
@@ -900,6 +916,8 @@ const resources = {
           logList: ["Flete internacional", "Gestión de inventarios", "Distribución local"],
           douTitle: "Agente de Aduanas",
           douText: "Gestión integral de las formalidades aduaneras para un despacho rápido y seguro.",
+          marTitle: "Peritaje Marítimo, Inspección y Control de Mercancías",
+          marText: "Ofrecemos servicios de peritaje marítimo, inspección y control de mercancías para verificar la calidad, la cantidad y la conformidad de las cargas. Estas intervenciones permiten asegurar las transacciones comerciales, constatar los posibles daños y facilitar la resolución de disputas entre vendedores, compradores, transportistas y aseguradores.",
           comTitle: "Comercio de Alimentos",
           comText: "Importación y distribución de productos alimenticios esenciales.",
           comList: ["Verduras", "Aceites", "Azúcar", "Leche (polvo y UHT)"]
@@ -912,15 +930,21 @@ const resources = {
         subtitle: "Mauritania ofrece un entorno rico en recursos naturales y oportunidades económicas. SMTS Group actúa como un puente estratégico entre los inversores y los responsables locales de la toma de decisiones.",
         secTag: "Sectores Clave",
         secSub: "Una tierra de oportunidades para el desarrollo continental",
+        learnMore: "Saber más",
+        learnLess: "Ver menos",
         secteurs: {
           gasTitle: "Gas",
           gasText: "Un sector en rápido crecimiento con importantes proyectos internacionales.",
+          gasMore: "Gracias al desarrollo de sus recursos energéticos, Mauritania ofrece perspectivas prometedoras para las inversiones en la exploración y el desarrollo de recursos gasíferos, tanto offshore como onshore. Este sector estratégico abre la vía a nuevas oportunidades en energía, infraestructuras y servicios asociados.",
           minTitle: "Minería (Oro y Hierro)",
           minText: "Mauritania es uno de los principales productores de recursos minerales en África.",
+          minMore: "Gracias a sus importantes reservas de hierro y oro, Mauritania se impone como uno de los destinos más prometedores para las inversiones mineras en África.",
           fishTitle: "Pesca",
           fishText: "Uno de los sectores más dinámicos gracias a los abundantes recursos marítimos.",
+          fishMore: "Gracias a la abundancia de sus recursos halieúticos, Mauritania ofrece oportunidades excepcionales en la pesca industrial, costera, artesanal y en las pesquerías pelágicas. Este potencial único favorece el desarrollo de inversiones sostenibles en la captura, transformación, logística y exportación de productos del mar hacia los mercados internacionales.",
           telTitle: "Telecomunicaciones",
-          telText: "Un mercado en expansión con una gran demanda de innovación."
+          telText: "Un mercado en expansión con una gran demanda de innovación.",
+          telMore: "Impulsado por una demanda creciente de conectividad y servicios digitales, el sector de las telecomunicaciones en Mauritania ofrece atractivas oportunidades de inversión en infraestructuras, tecnologías de la información, servicios digitales e innovación."
         },
         roleTitle: "Nuestro Papel Estratégico",
         roleSub: "SMTS Group actúa como un puente estratégico entre los inversores y los responsables locales de la toma de decisiones. Facilitamos cada uno de estos pasos decisivos:",
