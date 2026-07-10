@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaWhatsapp } from 'react-icons/fa';
 import Seo from '../components/Seo';
 import { useTranslation } from 'react-i18next';
+import { SITE_IMAGES } from '../constants/siteImages';
 
 const initial = {
   nom: '',
@@ -107,6 +108,27 @@ export default function Contact() {
             {t('contact.subtitle')}
           </p>
         </motion.div>
+
+        <motion.section
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
+          className="mt-12 overflow-hidden rounded-[2.5rem] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.45)]"
+        >
+          <div className="relative min-h-[240px] md:min-h-[280px]">
+            <img
+              src={SITE_IMAGES.contactPartenariat}
+              alt="Poignée de main professionnelle — partenariat SMTS Group"
+              className="absolute inset-0 h-full w-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#030712]/95 via-[#030712]/60 to-[#030712]/30" />
+            <div className="absolute inset-0 flex items-end md:items-center p-8 md:p-12">
+              <p className="max-w-xl text-lg font-semibold leading-relaxed text-white/90 md:text-xl">
+                {t('contact.visualCaption')}
+              </p>
+            </div>
+          </div>
+        </motion.section>
 
         <div className="mt-16 grid gap-6 md:grid-cols-3">
           {[

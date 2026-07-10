@@ -6,6 +6,7 @@ import Accueil from './pages/Accueil';
 import LeGroupe from './pages/LeGroupe';
 import Investir from './pages/Investir';
 import Expertises from './pages/Expertises';
+import Galerie from './pages/Galerie';
 import Contact from './pages/Contact';
 
 
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="le-groupe" element={<LeGroupe />} />
         <Route path="investir" element={<Investir />} />
         <Route path="expertises" element={<Expertises />} />
+        <Route path="galerie" element={<Galerie />} />
         <Route path="contact" element={<Contact />} />
       </Route>
       <Route path="*" element={<Navigate to="/accueil" replace />} />

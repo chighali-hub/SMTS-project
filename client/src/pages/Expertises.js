@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   FaBriefcase,
@@ -5,6 +6,7 @@ import {
   FaTruck,
   FaFileAlt,
   FaCarrot,
+  FaShip,
 } from 'react-icons/fa';
 import Seo from '../components/Seo';
 import { useTranslation } from 'react-i18next';
@@ -32,6 +34,12 @@ export default function Expertises() {
       list: t('expertises.blocks.logList', { returnObjects: true }),
     },
     {
+      title: t('expertises.blocks.marTitle'),
+      icon: FaShip,
+      text: t('expertises.blocks.marText'),
+      list: [],
+    },
+    {
       title: t('expertises.blocks.douTitle'),
       icon: FaFileAlt,
       text: t('expertises.blocks.douText'),
@@ -42,6 +50,7 @@ export default function Expertises() {
       icon: FaCarrot,
       text: t('expertises.blocks.comText'),
       list: t('expertises.blocks.comList', { returnObjects: true }),
+      listLinks: ['/galerie#legumes', '/galerie#huiles', '/galerie#sucre', '/galerie#lait'],
     },
   ];
 
@@ -104,14 +113,31 @@ export default function Expertises() {
                   <p className="mt-5 text-base md:text-lg leading-relaxed text-smts-muted font-medium">{b.text}</p>
                   {b.list.length > 0 && (
                     <ul className="mt-6 space-y-3">
-                      {b.list.map((li) => (
-                        <li key={li} className="flex items-center gap-3 text-[15px] font-semibold text-white/80 group-hover:text-white transition-colors">
-                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-smts-electric/20 text-smts-electric shadow-[0_0_10px_rgba(59,130,246,0.3)]">
-                            <span className="h-2 w-2 rounded-full bg-smts-electric" />
-                          </span>
-                          {li}
-                        </li>
-                      ))}
+                      {b.list.map((li, idx) => {
+                        const href = b.listLinks?.[idx];
+                        const content = (
+                          <>
+                            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-smts-electric/20 text-smts-electric shadow-[0_0_10px_rgba(59,130,246,0.3)]">
+                              <span className="h-2 w-2 rounded-full bg-smts-electric" />
+                            </span>
+                            {li}
+                          </>
+                        );
+                        return (
+                          <li key={li} className="flex items-center gap-3 text-[15px] font-semibold text-white/80 group-hover:text-white transition-colors">
+                            {href ? (
+                              <Link
+                                to={href}
+                                className="flex items-center gap-3 transition-colors hover:text-smts-electric"
+                              >
+                                {content}
+                              </Link>
+                            ) : (
+                              content
+                            )}
+                          </li>
+                        );
+                      })}
                     </ul>
                   )}
                 </div>

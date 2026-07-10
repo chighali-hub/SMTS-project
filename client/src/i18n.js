@@ -10,7 +10,57 @@ const resources = {
         groupe: "Le Groupe",
         investir: "Investir en Mauritanie",
         expertises: "Nos Expertises",
+        galerie: "Galerie",
         contact: "Contact"
+      },
+      galerie: {
+        seoTitle: "Galerie",
+        seoDescription: "Poissons frais et surgelés, sucre, légumes, huiles végétales et lait en poudre — SMTS Group.",
+        tag: "Produits & export",
+        title1: "Notre ",
+        title2: "Galerie",
+        subtitle: "Découvrez nos gammes de produits alimentaires et nos solutions d'exportation vers les marchés internationaux.",
+        sections: {
+          poissons: {
+            title: "Poissons Frais & Surgelés",
+            headline: "Solutions d'Exportation Sur Mesure",
+            paragraphs: [
+              "Nous exportons des poissons frais et surgelés selon les besoins spécifiques de nos partenaires internationaux vers l'Europe, l'Asie et l'Afrique",
+              "Nous accompagnons également les investisseurs et acheteurs professionnels dans le sourcing et l'acquisition de produits issus du marché local, avec un service fiable, transparent et conforme aux standards du commerce international"
+            ]
+          },
+          sucre: {
+            title: "Sucre Blanc Raffiné",
+            headline: "Pureté Brésilienne, Qualité Internationale",
+            paragraphs: [
+              "Nous importons du sucre blanc raffiné brésilien de haute qualité, reconnu pour sa pureté et sa conformité aux standards internationaux",
+              "Grâce à un approvisionnement fiable et régulier, nous répondons aux besoins du marché local ainsi qu'aux exigences des partenaires commerciaux régionaux"
+            ]
+          },
+          legumes: {
+            title: "Oignons Jaunes & Pommes de Terre",
+            headline: "Importation Premium, Distribution Régionale",
+            paragraphs: [
+              "Nous importons d'importantes quantités d'oignons jaunes et de pommes de terre de haute qualité en provenance des Pays-Bas, de Belgique et d'Égypte, afin d'approvisionner le marché local et de répondre également aux besoins des marchés régionaux à travers la réexportation vers les pays voisins"
+            ]
+          },
+          huiles: {
+            title: "Huiles Végétales",
+            headline: "Excellence Malaisienne, Pureté Internationale",
+            paragraphs: [
+              "Nous importons des huiles végétales de haute qualité en provenance de Malaisie, reconnues pour leur pureté, leur stabilité et leur excellence nutritionnelle. Sélectionnées avec soin selon les standards internationaux, elles répondent aux besoins du marché local ainsi qu'aux exigences des professionnels et de l'industrie agroalimentaire"
+            ]
+          },
+          lait: {
+            title: "Lait en Poudre",
+            headline: "Qualité Internationale, Approvisionnement Fiable",
+            paragraphs: [
+              "Nous importons du lait en poudre de haute qualité conditionné en sacs de 25 kg, sélectionné auprès de producteurs internationaux reconnus",
+              "Grâce à une chaîne d'approvisionnement fiable et performante, nous contribuons à répondre aux besoins du marché mauritanien tout en accompagnant les flux commerciaux vers les marchés des pays voisins",
+              "Notre engagement repose sur la qualité, la régularité des approvisionnements et la satisfaction durable de nos partenaires"
+            ]
+          }
+        }
       },
       footer: {
         intro: "Acteur stratégique en Mauritanie : commerce, logistique et facilitation d'investissement pour entreprises et investisseurs internationaux.",
@@ -101,7 +151,7 @@ const resources = {
             solTitle: "Solutions Business",
             solText: "Accompagnement stratégique, représentation commerciale et conseil.",
             poiTitle: "Poissons frais",
-            poiText: "Exportation de poissons frais."
+            poiText: "Exportation de poissons frais et congelés."
         }
       },
       expertises: {
@@ -119,6 +169,8 @@ const resources = {
           logList: ["Fret international", "Gestion des stocks", "Distribution locale"],
           douTitle: "Déclarant en douane",
           douText: "Gestion complète des formalités douanières pour un dédouanement rapide et sécurisé.",
+          marTitle: "Expertise Maritime, Inspection et Contrôle des Marchandises",
+          marText: "Nous proposons des services d'expertise maritime, d'inspection et de contrôle des marchandises afin de vérifier la qualité, la quantité et la conformité des cargaisons. Ces interventions permettent de sécuriser les transactions commerciales, de constater les éventuels dommages et de faciliter le règlement des différends entre vendeurs, acheteurs, transporteurs et assureurs.",
           comTitle: "Commerce de denrées alimentaires",
           comText: "Importation et distribution de produits alimentaires essentiels.",
           comList: ["Légumes", "Huiles", "Sucre", "Lait (poudre et UHT)"]
@@ -131,15 +183,21 @@ const resources = {
         subtitle: "La Mauritanie offre un environnement riche en ressources naturelles et en opportunités économiques. SMTS Group agit comme passerelle stratégique entre investisseurs et décideurs locaux.",
         secTag: "Secteurs clés",
         secSub: "Une terre d'opportunités pour le développement continental",
+        learnMore: "En savoir plus",
+        learnLess: "Voir moins",
         secteurs: {
           gasTitle: "Gaz",
           gasText: "Un secteur en pleine croissance avec des projets internationaux majeurs.",
+          gasMore: "Grâce au développement de ses ressources énergétiques, la Mauritanie offre des perspectives prometteuses pour les investissements dans l'exploration et le développement des ressources gazières, aussi bien offshore qu'onshore. Ce secteur stratégique ouvre la voie à de nouvelles opportunités dans l'énergie, les infrastructures et les services associés.",
           minTitle: "Mines (Or & Fer)",
           minText: "La Mauritanie est l'un des principaux producteurs de ressources minières en Afrique.",
+          minMore: "Grâce à ses importantes réserves de fer et d'or, la Mauritanie s'impose comme l'une des destinations les plus prometteuses pour les investissements miniers en Afrique.",
           fishTitle: "Pêche",
           fishText: "Un des secteurs les plus dynamiques grâce à des ressources maritimes abondantes.",
+          fishMore: "Grâce à l'abondance de ses ressources halieutiques, la Mauritanie offre des opportunités exceptionnelles dans la pêche industrielle, la pêche côtière, la pêche artisanale et les pêcheries pélagiques. Ce potentiel unique favorise le développement d'investissements durables dans la capture, la transformation, la logistique et l'exportation des produits de la mer vers les marchés internationaux.",
           telTitle: "Télécommunications",
-          telText: "Un marché en expansion avec une forte demande en innovation."
+          telText: "Un marché en expansion avec une forte demande en innovation.",
+          telMore: "Porté par une demande croissante en connectivité et en services numériques, le secteur des télécommunications en Mauritanie offre des opportunités attractives d'investissement dans les infrastructures, les technologies de l'information, les services digitaux et l'innovation."
         },
         roleTitle: "Notre rôle stratégique",
         roleSub: "SMTS Group agit comme une passerelle stratégique entre investisseurs et décideurs locaux. Nous facilitons chacune de ces étapes décisives :",
@@ -158,6 +216,7 @@ const resources = {
         title1: "Échangeons sur ",
         title2: "votre projet",
         subtitle: "Notre équipe répond dans les meilleurs délais pour structurer vos opérations en Mauritanie.",
+        visualCaption: "Construisons ensemble des partenariats durables, fondés sur la confiance et l'excellence opérationnelle.",
         loc: "Localisation",
         dir: "Direction Générale",
         com: "Contact Commercial",
@@ -200,7 +259,57 @@ const resources = {
         groupe: "المجموعة",
         investir: "الاستثمار في موريتانيا",
         expertises: "خبراتنا",
+        galerie: "المعرض",
         contact: "اتصل بنا"
+      },
+      galerie: {
+        seoTitle: "المعرض",
+        seoDescription: "أسماك طازجة ومجمدة، سكر، خضروات، زيوت نباتية وحليب بودرة — مجموعة SMTS.",
+        tag: "المنتجات والتصدير",
+        title1: "معرض ",
+        title2: "المنتجات",
+        subtitle: "اكتشفوا مجموعاتنا من المنتجات الغذائية وحلول التصدير نحو الأسواق الدولية.",
+        sections: {
+          poissons: {
+            title: "أسماك طازجة ومجمدة",
+            headline: "حلول تصدير مخصصة",
+            paragraphs: [
+              "نصدر الأسماك الطازجة والمجمدة وفق احتياجات شركائنا الدوليين نحو أوروبا وآسيا وأفريقيا",
+              "نرافق المستثمرين والمشترين المحترفين في التوريد واقتناء المنتجات من السوق المحلي بخدمة موثوقة وشفافة ومتوافقة مع معايير التجارة الدولية"
+            ]
+          },
+          sucre: {
+            title: "سكر أبيض مكرر",
+            headline: "نقاء برازيلي، جودة دولية",
+            paragraphs: [
+              "نستورد سكراً أبيض مكرراً برازيلياً عالي الجودة، معروفاً بنقائه وامتثاله للمعايير الدولية",
+              "بفضل توريد موثوق ومنتظم، نلبي احتياجات السوق المحلي ومتطلبات الشركاء التجاريين الإقليميين"
+            ]
+          },
+          legumes: {
+            title: "بصل أصفر وبطاطس",
+            headline: "استيراد متميز، توزيع إقليمي",
+            paragraphs: [
+              "نستورد كميات كبيرة من البصل الأصفر والبطاطس عالية الجودة من هولندا وبلجيكا ومصر لتزويد السوق المحلي وتلبية الأسواق الإقليمية عبر إعادة التصدير إلى الدول المجاورة"
+            ]
+          },
+          huiles: {
+            title: "زيوت نباتية",
+            headline: "تميز ماليزي، نقاء دولي",
+            paragraphs: [
+              "نستورد زيوتاً نباتية عالية الجودة من ماليزيا، معروفة بنقائها واستقرارها وقيمتها الغذائية. تُختار بعناية وفق المعايير الدولية لتلبية احتياجات السوق المحلي ومتطلبات المهنيين وصناعة الأغذية"
+            ]
+          },
+          lait: {
+            title: "حليب بودرة",
+            headline: "جودة دولية، توريد موثوق",
+            paragraphs: [
+              "نستورد حليباً بودرة عالي الجودة معبأً في أكياس 25 كغ، مختاراً من منتجين دوليين معترف بهم",
+              "بفضل سلسلة توريد موثوقة وفعالة، نساهم في تلبية احتياجات السوق الموريتاني مع دعم التدفقات التجارية نحو أسواق الدول المجاورة",
+              "التزامنا يقوم على الجودة وانتظام التوريد ورضا شركائنا على المدى الطويل"
+            ]
+          }
+        }
       },
       footer: {
         intro: "فاعل استراتيجي في موريتانيا: التجارة، اللوجستيات، وتسهيل الاستثمار للشركات والمستثمرين الدوليين.",
@@ -291,7 +400,7 @@ const resources = {
             solTitle: "حلول الأعمال",
             solText: "المرافقة الاستراتيجية والتمثيل التجاري والاستشارات.",
             poiTitle: "الأسماك الطازجة",
-            poiText: "تصدير الأسماك الطازجة."
+            poiText: "تصدير الأسماك الطازجة والمجمدة."
         }
       },
       expertises: {
@@ -309,6 +418,8 @@ const resources = {
           logList: ["الشحن الدولي", "إدارة المخزون", "التوزيع المحلي"],
           douTitle: "التخليص الجمركي",
           douText: "الإدارة الكاملة للإجراءات الجمركية لتخليص سريع وآمن.",
+          marTitle: "الخبرة البحرية وفحص ومراقبة البضائع",
+          marText: "نقدم خدمات الخبرة البحرية وفحص ومراقبة البضائع للتحقق من جودة وكمية ومطابقة الشحنات. تتيح هذه التدخلات تأمين المعاملات التجارية وتوثيق الأضرار المحتملة وتسهيل تسوية النزاعات بين البائعين والمشترين والناقلين وشركات التأمين.",
           comTitle: "تجارة المواد الغذائية",
           comText: "استيراد وتوزيع المنتجات الغذائية الأساسية.",
           comList: ["الخضروات", "الزيوت", "السكر", "الحليب"]
@@ -321,15 +432,21 @@ const resources = {
         subtitle: "توفر موريتانيا بيئة غنية بالموارد الطبيعية والفرص الاقتصادية. تعمل مجموعة SMTS كجسر استراتيجي بين المستثمرين وصناع القرار المحليين.",
         secTag: "القطاعات الرئيسية",
         secSub: "أرض الفرص للتنمية القارية",
+        learnMore: "اعرف المزيد",
+        learnLess: "عرض أقل",
         secteurs: {
           gasTitle: "الغاز",
           gasText: "قطاع سريع النمو مع مشاريع دولية كبرى.",
+          gasMore: "بفضل تطوير مواردها الطاقوية، توفر موريتانيا آفاقاً واعدة للاستثمار في استكشاف وتطوير الموارد الغازية، سواء في البحر أو على اليابسة. يفتح هذا القطاع الاستراتيجي الباب أمام فرص جديدة في الطاقة والبنى التحتية والخدمات المرتبطة بها.",
           minTitle: "المعادن (الذهب والحديد)",
           minText: "موريتانيا هي واحدة من المنتجين الرئيسيين للموارد المعدنية في أفريقيا.",
+          minMore: "بفضل احتياطياتها الكبيرة من الحديد والذهب، تبرز موريتانيا كإحدى الوجهات الأكثر وعداً للاستثمارات التعدينية في أفريقيا.",
           fishTitle: "الصيد",
           fishText: "أحد القطاعات الأكثر ديناميكية بفضل الموارد البحرية الوفيرة.",
+          fishMore: "بفضل وفرة مواردها السمكية، توفر موريتانيا فرصاً استثنائية في الصيد الصناعي والساحلي والتقليدي ومصائد الأسماك السطحية. يعزز هذا الإمكان الفريد تطوير استثمارات مستدامة في الصيد والتحويل واللوجستيات وتصدير منتجات البحر إلى الأسواق الدولية.",
           telTitle: "الاتصالات",
-          telText: "سوق متوسع مع طلب قوي على الابتكار."
+          telText: "سوق متوسع مع طلب قوي على الابتكار.",
+          telMore: "مدفوعاً بطلب متزايد على الاتصال والخدمات الرقمية، يوفر قطاع الاتصالات في موريتانيا فرصاً جذابة للاستثمار في البنى التحتية وتكنولوجيا المعلومات والخدمات الرقمية والابتكار."
         },
         roleTitle: "دورنا الاستراتيجي",
         roleSub: "تعمل مجموعة SMTS كجسر استراتيجي بين المستثمرين وصناع القرار المحليين. نسهل كل مرحلة من هذه المراحل الحاسمة:",
@@ -348,6 +465,7 @@ const resources = {
         title1: "لنتحدث عن ",
         title2: "مشروعك",
         subtitle: "يرد فريقنا في أقرب وقت ممكن لهيكلة عملياتك في موريتانيا.",
+        visualCaption: "لنبني معاً شراكات مستدامة قائمة على الثقة والتميز التشغيلي.",
         loc: "الموقع",
         dir: "الإدارة العامة",
         com: "الاتصال التجاري",
@@ -390,7 +508,57 @@ const resources = {
         groupe: "The Group",
         investir: "Invest in Mauritania",
         expertises: "Our Expertise",
+        galerie: "Gallery",
         contact: "Contact"
+      },
+      galerie: {
+        seoTitle: "Gallery",
+        seoDescription: "Fresh and frozen fish, sugar, vegetables, vegetable oils, and powdered milk — SMTS Group.",
+        tag: "Products & export",
+        title1: "Our ",
+        title2: "Gallery",
+        subtitle: "Discover our food product ranges and export solutions for international markets.",
+        sections: {
+          poissons: {
+            title: "Fresh & Frozen Fish",
+            headline: "Tailored Export Solutions",
+            paragraphs: [
+              "We export fresh and frozen fish according to the specific needs of our international partners to Europe, Asia, and Africa",
+              "We also support investors and professional buyers in sourcing and acquiring products from the local market, with reliable, transparent service aligned with international trade standards"
+            ]
+          },
+          sucre: {
+            title: "Refined White Sugar",
+            headline: "Brazilian Purity, International Quality",
+            paragraphs: [
+              "We import high-quality Brazilian refined white sugar, recognized for its purity and compliance with international standards",
+              "Through reliable, regular supply, we meet local market needs and the requirements of regional commercial partners"
+            ]
+          },
+          legumes: {
+            title: "Yellow Onions & Potatoes",
+            headline: "Premium Import, Regional Distribution",
+            paragraphs: [
+              "We import substantial quantities of high-quality yellow onions and potatoes from the Netherlands, Belgium, and Egypt to supply the local market and regional markets through re-export to neighboring countries"
+            ]
+          },
+          huiles: {
+            title: "Vegetable Oils",
+            headline: "Malaysian Excellence, International Purity",
+            paragraphs: [
+              "We import high-quality vegetable oils from Malaysia, valued for their purity, stability, and nutritional excellence. Carefully selected to international standards, they meet local market needs and the requirements of professionals and the food industry"
+            ]
+          },
+          lait: {
+            title: "Powdered Milk",
+            headline: "International Quality, Reliable Supply",
+            paragraphs: [
+              "We import high-quality powdered milk packaged in 25 kg bags, selected from recognized international producers",
+              "Through a reliable and efficient supply chain, we help meet the needs of the Mauritanian market while supporting commercial flows to neighboring countries",
+              "Our commitment is built on quality, regular supply, and lasting satisfaction for our partners"
+            ]
+          }
+        }
       },
       footer: {
         intro: "A strategic player in Mauritania: trade, logistics, and investment facilitation for international companies and investors.",
@@ -481,7 +649,7 @@ const resources = {
             solTitle: "Business Solutions",
             solText: "Strategic support, commercial representation, and consulting.",
             poiTitle: "Fresh Fish",
-            poiText: "Export of fresh fish."
+            poiText: "Export of fresh and frozen fish."
         }
       },
       expertises: {
@@ -499,6 +667,8 @@ const resources = {
           logList: ["International freight", "Inventory management", "Local distribution"],
           douTitle: "Customs Broker",
           douText: "Complete management of customs formalities for fast and secure clearance.",
+          marTitle: "Maritime Expertise, Inspection and Cargo Control",
+          marText: "We provide maritime expertise, inspection and cargo control services to verify the quality, quantity and compliance of shipments. These interventions help secure commercial transactions, document any damage and facilitate dispute resolution between sellers, buyers, carriers and insurers.",
           comTitle: "Food Trade",
           comText: "Importation and distribution of essential food products.",
           comList: ["Vegetables", "Oils", "Sugar", "Milk (powder and UHT)"]
@@ -511,15 +681,21 @@ const resources = {
         subtitle: "Mauritania offers an environment rich in natural resources and economic opportunities. SMTS Group acts as a strategic bridge between investors and local decision-makers.",
         secTag: "Key Sectors",
         secSub: "A land of opportunities for continental development",
+        learnMore: "Learn more",
+        learnLess: "Show less",
         secteurs: {
           gasTitle: "Gas",
           gasText: "A rapidly growing sector with major international projects.",
+          gasMore: "Thanks to the development of its energy resources, Mauritania offers promising prospects for investment in the exploration and development of gas resources, both offshore and onshore. This strategic sector opens the way to new opportunities in energy, infrastructure and related services.",
           minTitle: "Mining (Gold & Iron)",
           minText: "Mauritania is one of the leading producers of mineral resources in Africa.",
+          minMore: "Thanks to its significant iron and gold reserves, Mauritania stands out as one of the most promising destinations for mining investment in Africa.",
           fishTitle: "Fishing",
           fishText: "One of the most dynamic sectors thanks to abundant maritime resources.",
+          fishMore: "Thanks to the abundance of its fishery resources, Mauritania offers exceptional opportunities in industrial fishing, coastal fishing, artisanal fishing and pelagic fisheries. This unique potential supports sustainable investment in catching, processing, logistics and exporting seafood products to international markets.",
           telTitle: "Telecommunications",
-          telText: "An expanding market with high demand for innovation."
+          telText: "An expanding market with high demand for innovation.",
+          telMore: "Driven by growing demand for connectivity and digital services, Mauritania's telecommunications sector offers attractive investment opportunities in infrastructure, information technology, digital services and innovation."
         },
         roleTitle: "Our Strategic Role",
         roleSub: "SMTS Group acts as a strategic bridge between investors and local decision-makers. We facilitate each of these decisive steps:",
@@ -538,6 +714,7 @@ const resources = {
         title1: "Let's discuss ",
         title2: "your project",
         subtitle: "Our team responds as quickly as possible to structure your operations in Mauritania.",
+        visualCaption: "Let's build lasting partnerships founded on trust and operational excellence.",
         loc: "Location",
         dir: "General Management",
         com: "Commercial Contact",
@@ -580,7 +757,57 @@ const resources = {
         groupe: "El Grupo",
         investir: "Invertir en Mauritania",
         expertises: "Nuestra Experiencia",
+        galerie: "Galería",
         contact: "Contacto"
+      },
+      galerie: {
+        seoTitle: "Galería",
+        seoDescription: "Pescado fresco y congelado, azúcar, verduras, aceites vegetales y leche en polvo — SMTS Group.",
+        tag: "Productos y exportación",
+        title1: "Nuestra ",
+        title2: "Galería",
+        subtitle: "Descubra nuestras gamas de productos alimentarios y soluciones de exportación hacia los mercados internacionales.",
+        sections: {
+          poissons: {
+            title: "Pescado Fresco y Congelado",
+            headline: "Soluciones de Exportación a Medida",
+            paragraphs: [
+              "Exportamos pescado fresco y congelado según las necesidades específicas de nuestros socios internacionales hacia Europa, Asia y África",
+              "También acompañamos a inversores y compradores profesionales en el abastecimiento y la adquisición de productos del mercado local, con un servicio fiable, transparente y conforme a los estándares del comercio internacional"
+            ]
+          },
+          sucre: {
+            title: "Azúcar Blanco Refinado",
+            headline: "Pureza Brasileña, Calidad Internacional",
+            paragraphs: [
+              "Importamos azúcar blanco refinado brasileño de alta calidad, reconocido por su pureza y conformidad con los estándares internacionales",
+              "Gracias a un suministro fiable y regular, respondemos a las necesidades del mercado local y a las exigencias de los socios comerciales regionales"
+            ]
+          },
+          legumes: {
+            title: "Cebollas Amarillas y Patatas",
+            headline: "Importación Premium, Distribución Regional",
+            paragraphs: [
+              "Importamos importantes cantidades de cebollas amarillas y patatas de alta calidad de Países Bajos, Bélgica y Egipto para abastecer el mercado local y los mercados regionales mediante la reexportación a países vecinos"
+            ]
+          },
+          huiles: {
+            title: "Aceites Vegetales",
+            headline: "Excelencia Malasia, Pureza Internacional",
+            paragraphs: [
+              "Importamos aceites vegetales de alta calidad de Malasia, reconocidos por su pureza, estabilidad y excelencia nutricional. Seleccionados según los estándares internacionales, satisfacen las necesidades del mercado local y las exigencias de los profesionales y la industria alimentaria"
+            ]
+          },
+          lait: {
+            title: "Leche en Polvo",
+            headline: "Calidad Internacional, Suministro Fiable",
+            paragraphs: [
+              "Importamos leche en polvo de alta calidad en sacos de 25 kg, seleccionada entre productores internacionales reconocidos",
+              "Gracias a una cadena de suministro fiable y eficiente, contribuimos a satisfacer las necesidades del mercado mauritano y acompañamos los flujos comerciales hacia los mercados de los países vecinos",
+              "Nuestro compromiso se basa en la calidad, la regularidad de los suministros y la satisfacción duradera de nuestros socios"
+            ]
+          }
+        }
       },
       footer: {
         intro: "Un actor estratégico en Mauritania: comercio, logística y facilitación de inversiones para empresas e inversores internacionales.",
@@ -671,7 +898,7 @@ const resources = {
             solTitle: "Soluciones de Negocio",
             solText: "Apoyo estratégico, representación comercial y consultoría.",
             poiTitle: "Pescado fresco",
-            poiText: "Exportación de pescado fresco."
+            poiText: "Exportación de pescado fresco y congelado."
         }
       },
       expertises: {
@@ -689,6 +916,8 @@ const resources = {
           logList: ["Flete internacional", "Gestión de inventarios", "Distribución local"],
           douTitle: "Agente de Aduanas",
           douText: "Gestión integral de las formalidades aduaneras para un despacho rápido y seguro.",
+          marTitle: "Peritaje Marítimo, Inspección y Control de Mercancías",
+          marText: "Ofrecemos servicios de peritaje marítimo, inspección y control de mercancías para verificar la calidad, la cantidad y la conformidad de las cargas. Estas intervenciones permiten asegurar las transacciones comerciales, constatar los posibles daños y facilitar la resolución de disputas entre vendedores, compradores, transportistas y aseguradores.",
           comTitle: "Comercio de Alimentos",
           comText: "Importación y distribución de productos alimenticios esenciales.",
           comList: ["Verduras", "Aceites", "Azúcar", "Leche (polvo y UHT)"]
@@ -701,15 +930,21 @@ const resources = {
         subtitle: "Mauritania ofrece un entorno rico en recursos naturales y oportunidades económicas. SMTS Group actúa como un puente estratégico entre los inversores y los responsables locales de la toma de decisiones.",
         secTag: "Sectores Clave",
         secSub: "Una tierra de oportunidades para el desarrollo continental",
+        learnMore: "Saber más",
+        learnLess: "Ver menos",
         secteurs: {
           gasTitle: "Gas",
           gasText: "Un sector en rápido crecimiento con importantes proyectos internacionales.",
+          gasMore: "Gracias al desarrollo de sus recursos energéticos, Mauritania ofrece perspectivas prometedoras para las inversiones en la exploración y el desarrollo de recursos gasíferos, tanto offshore como onshore. Este sector estratégico abre la vía a nuevas oportunidades en energía, infraestructuras y servicios asociados.",
           minTitle: "Minería (Oro y Hierro)",
           minText: "Mauritania es uno de los principales productores de recursos minerales en África.",
+          minMore: "Gracias a sus importantes reservas de hierro y oro, Mauritania se impone como uno de los destinos más prometedores para las inversiones mineras en África.",
           fishTitle: "Pesca",
           fishText: "Uno de los sectores más dinámicos gracias a los abundantes recursos marítimos.",
+          fishMore: "Gracias a la abundancia de sus recursos halieúticos, Mauritania ofrece oportunidades excepcionales en la pesca industrial, costera, artesanal y en las pesquerías pelágicas. Este potencial único favorece el desarrollo de inversiones sostenibles en la captura, transformación, logística y exportación de productos del mar hacia los mercados internacionales.",
           telTitle: "Telecomunicaciones",
-          telText: "Un mercado en expansión con una gran demanda de innovación."
+          telText: "Un mercado en expansión con una gran demanda de innovación.",
+          telMore: "Impulsado por una demanda creciente de conectividad y servicios digitales, el sector de las telecomunicaciones en Mauritania ofrece atractivas oportunidades de inversión en infraestructuras, tecnologías de la información, servicios digitales e innovación."
         },
         roleTitle: "Nuestro Papel Estratégico",
         roleSub: "SMTS Group actúa como un puente estratégico entre los inversores y los responsables locales de la toma de decisiones. Facilitamos cada uno de estos pasos decisivos:",
@@ -728,6 +963,7 @@ const resources = {
         title1: "Hablemos de ",
         title2: "su proyecto",
         subtitle: "Nuestro equipo responde lo antes posible para estructurar sus operaciones en Mauritania.",
+        visualCaption: "Construyamos juntos alianzas duraderas basadas en la confianza y la excelencia operativa.",
         loc: "Ubicación",
         dir: "Dirección General",
         com: "Contacto Comercial",
